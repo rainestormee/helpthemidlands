@@ -24,6 +24,7 @@ public class Main {
         });
         get("/there", Main::overHere);
         get("/thyme", new TestViewRoute(), new ThymeleafTemplateEngine());
+        get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/cool/:name", Main::reubenIsCool);
         // hello world
         // yeah it's a little clunky but it does the job and supports quite a few users, it doesn't really support using Ctrl+Z ect tho
