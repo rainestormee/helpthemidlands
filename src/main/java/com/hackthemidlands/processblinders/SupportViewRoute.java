@@ -14,8 +14,8 @@ import java.util.Map;
 
 public class SupportViewRoute implements TemplateViewRoute {
 
+    @Override
     public ModelAndView handle(Request request, Response response) {
-        Map<String, Object> model = new HashMap<>();
-        return new ModelAndView(model, "support");
+        return new ModelAndView(new HashMap<>(), "support");
     }
 }
