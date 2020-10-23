@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static spark.Spark.get;
 import static spark.Spark.staticFileLocation;
@@ -22,6 +23,7 @@ public class Main {
             return "See ya, " + req.params(":name");
         });
         get("/there", Main::overHere);
+        get("/thyme", new TestViewRoute(), new ThymeleafTemplateEngine());
     }
 
     public static String overHere(Request request, Response response) {
