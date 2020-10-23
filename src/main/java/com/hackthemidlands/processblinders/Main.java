@@ -2,6 +2,8 @@ package com.hackthemidlands.processblinders;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import spark.Request;
+import spark.Response;
 import spark.Spark;
 
 import static spark.Spark.get;
@@ -19,5 +21,10 @@ public class Main {
         get("/goodbye/:name", (req,res) -> {
             return "See ya, " + req.params(":name");
         });
+        get("/there", Main::overHere);
+    }
+
+    public static String overHere(Request request, Response response) {
+        return "i'm over here!";
     }
 }
