@@ -22,9 +22,14 @@ public class Main {
             return "See ya, " + req.params(":name");
         });
         get("/there", Main::overHere);
+        get("/cool/:name", Main::reubenIsCool);
     }
 
     public static String overHere(Request request, Response response) {
         return "i'm over here!";
+    }
+
+    public static String reubenIsCool(Request req, Response res){
+        return req.params(":name") + " thinks Reuben is cool";
     }
 }
