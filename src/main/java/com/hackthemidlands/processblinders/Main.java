@@ -16,5 +16,8 @@ public class Main {
         staticFileLocation("/public");
         get("/hello", (req, res) -> "Hello World");
         get("/test", (req, res) -> "timer");
+        get("/goodbye/:name", (req,res) -> {
+            return "See ya, " + req.params(":name");
+        });
     }
 }
