@@ -24,6 +24,6 @@ public class TestViewRoute implements TemplateViewRoute {
         dateTime = dateTime.plus(1, ChronoUnit.HOURS);
         model.put("startTime", dateTime.toString());
 
-        return new ModelAndView(model, "timer");
+        return new ModelAndView(model, "main");
     }
 }
