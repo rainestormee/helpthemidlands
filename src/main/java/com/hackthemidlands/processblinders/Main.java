@@ -24,9 +24,14 @@ public class Main {
         });
         get("/there", Main::overHere);
         get("/thyme", new TestViewRoute(), new ThymeleafTemplateEngine());
+        get("/cool/:name", Main::reubenIsCool);
     }
 
     public static String overHere(Request request, Response response) {
         return "i'm over here!";
+    }
+
+    public static String reubenIsCool(Request req, Response res){
+        return req.params(":name") + " thinks Reuben is cool";
     }
 }
