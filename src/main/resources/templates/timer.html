@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <p>You are one of: <span th:text="${drones}">-1</span> online users.</p>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,44 +12,44 @@
         }
     </style>
 </head>
+
 <body>
 
-<p id="demo">01:00:00</p>
+    <p id="demo">01:00:00</p>
 
-<script>
-    const zeroPad = (num, places) => String(num).padStart(places, '0')
-    // Set the date we're counting down to
-    let message = "[[${startTime}]]";
-    let countDownDate = new Date(message).getTime();
-    countDownDate = new Date().getTime() + 1000 * 10;
-    // Update the count down every 1 second
-    setInterval(function() {
+    <script>
+        const zeroPad = (num, places) => String(num).padStart(places, '0')
+        // Set the date we're counting down to
+        let message = "[[${startTime}]]";
+        let countDownDate = new Date(message).getTime();
+        // Update the count down every 1 second
+        setInterval(function () {
+            countDownDate = new Date().getTime() + 1000 * 10;
+            var doTimer = setInterval(function () {
 
-        // Get today's date and time
-        let now = new Date().getTime();
+                // Get today's date and time
+                let now = new Date().getTime();
 
-        // Find the distance between now and the count down date
-        let distance = countDownDate - now;
+                // Find the distance between now and the count down date
+                let distance = countDownDate - now;
+                console.log(distance)
+                // Time calculations for hours, minutes and seconds
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Time calculations for hours, minutes and seconds
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                // Output the result in an element with id="demo"
+                document.getElementById("demo").innerHTML = zeroPad(hours, 2) + ":"
+                    + zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2);
 
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = zeroPad(hours, 2) + ":"
-            + zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2);
-
-        if ((distance % 1000 * 10) == 0) {
-            alert("yaya ya yeeeeeeeeeet");
-        }
-
-        // If the count down is over, write some text
-        if (distance <= 1) {
-            countDownDate = new Date().getTime() + 1000 * 3600;
-        }
-    }, 1000);
-</script>
+                if (distance <= 1000) {
+                    clearInterval(doTimer);
+                    alert("yaya ya yeeeeeeeeeet");
+                }
+            }, 1000);
+        }, 20000);
+    </script>
 
 </body>
+
 </html>
