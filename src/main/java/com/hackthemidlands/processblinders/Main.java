@@ -27,6 +27,7 @@ public class Main {
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/cool/:name", Main::reubenIsCool);
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
+        get("/login/makeAccount", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
         // hello world
         // yeah it's a little clunky but it does the job and supports quite a few users, it doesn't really support using Ctrl+Z ect tho
     }
