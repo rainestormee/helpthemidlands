@@ -25,6 +25,8 @@ public class Main {
         get("/there", Main::overHere);
         get("/thyme", new TestViewRoute(), new ThymeleafTemplateEngine());
         get("/cool/:name", Main::reubenIsCool);
+        // hello world
+        // yeah it's a little clunky but it does the job and supports quite a few users, it doesn't really support using Ctrl+Z ect tho
     }
 
     public static String overHere(Request request, Response response) {
@@ -33,5 +35,16 @@ public class Main {
 
     public static String reubenIsCool(Request req, Response res){
         return req.params(":name") + " thinks Reuben is cool";
+        /*
+        yeah it's a bit weird but other than that, nah it usually fixes itself
+        they can set it up yeah - or web editor
+        btw if you wanna run this to test it
+        run
+        $ mvn clean package
+        $ java -jar target/*.jar
+        from terminal
+        */
+        //
+
     }
 }
