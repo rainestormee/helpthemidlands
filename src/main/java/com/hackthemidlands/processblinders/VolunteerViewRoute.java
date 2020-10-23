@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 public class VolunteerViewRoute implements TemplateViewRoute {
 
+
+
     @Override
     public ModelAndView handle(Request request, Response response) throws Exception {
         return new ModelAndView(new HashMap<>(), "volunteer");

@@ -7,8 +7,7 @@ import spark.Response;
 import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
-import static spark.Spark.get;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
 public class Main {
 
@@ -27,8 +26,6 @@ public class Main {
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/cool/:name", Main::reubenIsCool);
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
-        // hello world
-        // yeah it's a little clunky but it does the job and supports quite a few users, it doesn't really support using Ctrl+Z ect tho
     }
 
     public static String overHere(Request request, Response response) {
