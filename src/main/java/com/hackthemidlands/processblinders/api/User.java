@@ -20,6 +20,4 @@ public class User {
         this.email = "test@test.test";
         this.password = "password123";
     }
-
-
 }

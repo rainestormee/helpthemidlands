@@ -18,9 +18,7 @@ public class Main {
         staticFileLocation("/public");
         get("/hello", (req, res) -> "Hello World");
         get("/test", (req, res) -> "timer");
-        get("/goodbye/:name", (req,res) -> {
-            return "See ya, " + req.params(":name");
-        });
+        get("/goodbye/:name", (req,res) -> "See ya, " + req.params(":name"));
         get("/there", Main::overHere);
         get("/thyme", new TestViewRoute(), new ThymeleafTemplateEngine());
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
@@ -34,16 +32,5 @@ public class Main {
 
     public static String reubenIsCool(Request req, Response res){
         return req.params(":name") + " thinks Reuben is cool";
-        /*
-        yeah it's a bit weird but other than that, nah it usually fixes itself
-        they can set it up yeah - or web editor
-        btw if you wanna run this to test it
-        run
-        $ mvn clean package
-        $ java -jar target/*.jar
-        from terminal
-        */
-        //
-
     }
 }
