@@ -14,12 +14,8 @@ import java.util.Map;
 
 public class SupportViewRoute implements TemplateViewRoute {
 
-    private int drones = 0;
-
     public ModelAndView handle(Request request, Response response) {
         Map<String, Object> model = new HashMap<>();
-
-
         return new ModelAndView(model, "support");
     }
 }
