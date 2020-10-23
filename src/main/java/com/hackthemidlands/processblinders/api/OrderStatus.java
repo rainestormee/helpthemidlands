@@ -18,6 +18,8 @@ public enum OrderStatus {
                 return COMPLETED;
             case 3:
                 return CANCELLED;
+            default:
+                return null;
         }
     }
 }
