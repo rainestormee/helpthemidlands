@@ -22,32 +22,38 @@
         // Set the date we're counting down to
         let message = "[[${startTime}]]";
         let countDownDate = new Date(message).getTime();
-        // Update the count down every 1 second
-        setInterval(function () {
+
+        function myTimer() {
+            // Get today's date and time
+            let now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            let distance = countDownDate - now;
+            console.log(distance)
+            // Time calculations for hours, minutes and seconds
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            document.getElementById("demo").innerHTML = zeroPad(hours, 2) + ":"
+                + zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2);
+
+            if (distance <= 1000) {
+                alert("yaya ya yeeeeeeeeeet");
+            }
+            if (distance > 1000) {
+                setTimeout(myTimer, 1000);
+            }
+        }
+
+        function doTimer() {
             countDownDate = new Date().getTime() + 1000 * 10;
-            var doTimer = setInterval(function () {
+            myTimer();
+            setTimeout(doTimer, 12000);
+        }
+        doTimer();
 
-                // Get today's date and time
-                let now = new Date().getTime();
-
-                // Find the distance between now and the count down date
-                let distance = countDownDate - now;
-                console.log(distance)
-                // Time calculations for hours, minutes and seconds
-                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Output the result in an element with id="demo"
-                document.getElementById("demo").innerHTML = zeroPad(hours, 2) + ":"
-                    + zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2);
-
-                if (distance <= 1000) {
-                    clearInterval(doTimer);
-                    alert("yaya ya yeeeeeeeeeet");
-                }
-            }, 1000);
-        }, 20000);
     </script>
 
 </body>
