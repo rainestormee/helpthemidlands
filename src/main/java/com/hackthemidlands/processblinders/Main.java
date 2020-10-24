@@ -70,7 +70,11 @@ public final class Main {
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
 
-        get("/login", new TestViewRoute(), new ThymeleafTemplateEngine());
+        path("/login", () -> {
+            get("", new TestViewRoute(), new ThymeleafTemplateEngine());
+            post("",(re,rs)-> "");
+        });
+
         path("/register", () -> {
             post("", (re, rs) -> {
                 Set<String> params = re.queryParams();

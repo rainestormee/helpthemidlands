@@ -1,32 +1,35 @@
 package com.hackthemidlands.processblinders.api;
+import lombok.Getter;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
 public class GoogleGeoCode
 {
-    private static final String GEO_CODE_SERVER = "http://maps.googleapis.com/maps/api/geocode/json?";
-    public static String lat, longit;
+    private final String GEO_CODE_SERVER = "http://maps.googleapis.com/maps/api/geocode/json?";
 
-    public static void main(String args)
+    @Getter
+    private String lat, longit;
+
+    public void main(String args)
     {
-        String code = args;
 
-        String response = getLocation(code);
+        String response = getLocation(args);
 
         String[] result = parseLocation(response);
         lat = latitude(result[0]);
         longit = longitude(result[1]);
     }
-    private static String latitude(String a){
+    private String latitude(String a){
         return a;
     }
 
-    private static String longitude(String a){
+    private String longitude(String a){
         return a;
     }
 
-    private static String getLocation(String code)
+    private String getLocation(String code)
     {
         String address = buildUrl(code);
 
@@ -61,7 +64,7 @@ public class GoogleGeoCode
         }
     }
 
-    private static String buildUrl(String code)
+    private String buildUrl(String code)
     {
         StringBuilder builder = new StringBuilder();
 
@@ -74,7 +77,7 @@ public class GoogleGeoCode
         return builder.toString();
     }
 
-    private static String[] parseLocation(String response)
+    private String[] parseLocation(String response)
     {
         // Look for location using brute force.
         // There are much nicer ways to do this, e.g. with Google's JSON library: Gson
@@ -98,7 +101,7 @@ public class GoogleGeoCode
         return new String[] {lat, lng};
     }
 
-    private static String getOrdinate(String s)
+    private String getOrdinate(String s)
     {
         String[] split = s.trim().split(" ");
 

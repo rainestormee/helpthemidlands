@@ -1,3 +1,5 @@
+package com.hackthemidlands.processblinders.api;
+
 import com.hackthemidlands.processblinders.api.GoogleGeoCode;
 
 public class VolunteerMainPage{
@@ -7,9 +9,10 @@ public class VolunteerMainPage{
     }
 
     public static void getLatitudeAndLongitude(String postcode){
-      GoogleGeoCode.main(postcode);
-      String la = GoogleGeoCode.lat;
-      String lon = GoogleGeoCode.longit;
+      GoogleGeoCode gc = new GoogleGeoCode();
+      gc.main(postcode);
+      String la = gc.getLat();
+      String lon = gc.getLongit();
       int a = Integer.parseInt(la);
       int b = Integer.parseInt(lon);
       System.out.println(a + " " + b);
