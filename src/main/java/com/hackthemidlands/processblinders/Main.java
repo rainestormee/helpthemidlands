@@ -24,6 +24,19 @@ public final class Main {
 
     @Getter
     private static final List<User> allValidUsers = new ArrayList<>();
+    public static Filter setSession = (Request request, Response response) -> {
+        if (hasCookie(request)) {
+            String cookie = getCookie(request);
+            System.out.println(cookie);
+            User user = getUserFromEmail(cookie);
+            System.out.println(user.getFirstName());
+            if (user != null) {
+                loggedInUsers.put(user.getEmail(), user);
+            } else {
+                response.redirect("/dev/fuck-off");
+            }
+        }
+    };
 
     public static boolean addNewUserToDatabase(User user) {
         if (findUserFromDatabase(user.getEmail()) != null) {
@@ -44,6 +57,7 @@ public final class Main {
     public static void main(String[] args) {
         Spark.exception(Exception.class, (exception, request, response) -> exception.printStackTrace()); // allow spark to internally handle exceptions
         staticFileLocation("/public");
+        port(8080);
 
         allValidUsers.add(new User());
         allValidUsers.add(new User("test", "admin", "admin@admin.com", "pass"));
@@ -56,6 +70,16 @@ public final class Main {
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
         get("/login/makeAccount", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
+        path("/register", () -> {
+            post("/", (re, rs) -> {
+                if (re.queryParams("action").equalsIgnoreCase("Volunteer")) {
+                    return "volunteer";
+                }
+                return "client";
+            });
+
+            get("/", (re, rs) -> "I got a GET request silly");
+        });
         path("/dev", () -> {
             before("/protected", setSession);
             get("/protected", (req, res) -> {
@@ -71,20 +95,6 @@ public final class Main {
             });
         });
     }
-
-    public static Filter setSession = (Request request, Response response) -> {
-        if (hasCookie(request)) {
-            String cookie = getCookie(request);
-            System.out.println(cookie);
-            User user = getUserFromEmail(cookie);
-            System.out.println(user.getFirstName());
-            if (user != null) {
-                loggedInUsers.put(user.getEmail(), user);
-            } else {
-                response.redirect("/dev/fuck-off");
-            }
-        }
-    };
 
     public static void setCookie(Response response, User user) {
         response.cookie("/", "email", user.getEmail(), -1, false);
