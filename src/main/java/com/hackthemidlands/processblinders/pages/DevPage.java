@@ -3,11 +3,9 @@ package com.hackthemidlands.processblinders.pages;
 import com.hackthemidlands.processblinders.api.User;
 import spark.RouteGroup;
 
-import static com.hackthemidlands.processblinders.util.CookieUtil.getCookie;
-import static com.hackthemidlands.processblinders.util.CookieUtil.setCookie;
-import static com.hackthemidlands.processblinders.util.FilterUtil.requiresLogin;
-import static com.hackthemidlands.processblinders.util.UserUtil.getLoggedInUsers;
-import static com.hackthemidlands.processblinders.util.UserUtil.getUserFromEmail;
+import static com.hackthemidlands.processblinders.util.CookieUtil.*;
+import static com.hackthemidlands.processblinders.util.FilterUtil.*;
+import static com.hackthemidlands.processblinders.util.UserUtil.*;
 import static spark.Spark.before;
 import static spark.Spark.get;
 

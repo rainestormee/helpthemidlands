@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.hackthemidlands.processblinders.util.UserUtil.getAllValidUsers;
+import static com.hackthemidlands.processblinders.util.UserUtil.*;
 import static spark.Spark.*;
 
 public final class Main {
