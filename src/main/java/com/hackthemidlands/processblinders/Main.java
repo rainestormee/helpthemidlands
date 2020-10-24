@@ -35,8 +35,6 @@ public final class Main {
         get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
 
-
-
         path("/login", () -> {
             LoginPage loginPage = new LoginPage();
             get("", loginPage, new ThymeleafTemplateEngine());
