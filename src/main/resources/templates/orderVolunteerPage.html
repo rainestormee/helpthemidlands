@@ -6,8 +6,8 @@
 </head>
 <body>
 <tr th:each="order: ${orders}">
-    <td th:each="item ${order.shopList}">
-        <p>item</p>
+    <td th:each="item: ${order.shopList}">
+        <p th:text=${item}></p>
     </td>
 </tr>
 </body>
