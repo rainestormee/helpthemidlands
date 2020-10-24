@@ -45,6 +45,9 @@ public final class Main {
         Spark.exception(Exception.class, (exception, request, response) -> exception.printStackTrace()); // allow spark to internally handle exceptions
         staticFileLocation("/public");
 
+        allValidUsers.add(new User());
+        allValidUsers.add(new User("test", "admin", "admin@admin.com", "pass"));
+
         get("/test/test", new TestViewRoute(), new ThymeleafTemplateEngine());
         get("/hello", (req, res) -> "Hello World");
         get("/test", (req, res) -> "timer");
@@ -53,13 +56,16 @@ public final class Main {
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
         get("/login/makeAccount", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
-        get("/dev/login", (req, res) -> "You are :");
         path("/dev", () -> {
             before("/protected", setSession);
-            get("/protected", (req, res) -> "This is Protected");
+            get("/protected", (req, res) -> {
+                User u = getUserFromEmail(getCookie(req));
+                return "Your name is " + u.getFirstName() + " " + u.getLastName();
+            });
             get("/fuck-off", (req, res) -> "You have been fucked off");
             get("/login", (req, res) -> {
                 loggedInUsers.put(new User().getEmail(), new User());
+                System.err.println("YOU ARE SUPPOSED TO BE LOGGED IN HERE");
                 setCookie(res, new User());
                 return "You have been logged in.";
             });
@@ -67,12 +73,11 @@ public final class Main {
     }
 
     public static Filter setSession = (Request request, Response response) -> {
-        if (!hasCookie(request)) {
-
-            String sessionId = getCookie(request);
-            System.out.println(sessionId);
-            User user = getUserFromCookie(request);
-
+        if (hasCookie(request)) {
+            String cookie = getCookie(request);
+            System.out.println(cookie);
+            User user = getUserFromEmail(cookie);
+            System.out.println(user.getFirstName());
             if (user != null) {
                 loggedInUsers.put(user.getEmail(), user);
             } else {
@@ -82,7 +87,7 @@ public final class Main {
     };
 
     public static void setCookie(Response response, User user) {
-        response.cookie("email", user.getEmail());
+        response.cookie("/", "email", user.getEmail(), -1, false);
     }
 
     public static boolean hasCookie(Request request) {
@@ -93,9 +98,8 @@ public final class Main {
         return request.cookie("email");
     }
 
-    public static User getUserFromCookie(Request request) {
-        if (!hasCookie(request)) return null;
-        return findUserFromDatabase(getCookie(request));
+    public static User getUserFromEmail(String email) {
+        return findUserFromDatabase(email);
     }
 
 }
