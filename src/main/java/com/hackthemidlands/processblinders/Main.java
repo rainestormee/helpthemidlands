@@ -42,6 +42,7 @@ public final class Main {
         before("/userPage", clientOnly);
         get("/userPage", new UserPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
+        get("/viewOrders", new ViewOrdersPage(), new ThymeleafTemplateEngine());
 
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
