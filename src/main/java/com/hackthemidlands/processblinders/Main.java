@@ -43,7 +43,12 @@ public final class Main {
         before("userPage", clientOnly);
         get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
-        get("/settings", new Settings(), new ThymeleafTemplateEngine());
+
+        path("/settings", () -> {
+            SettingsPage settingsPage = new SettingsPage();
+            get("", settingsPage, new ThymeleafTemplateEngine());
+            post("", settingsPage.post);
+        });
 
         path("/login", () -> {
             LoginPage loginPage = new LoginPage();
