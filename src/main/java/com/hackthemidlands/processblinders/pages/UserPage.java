@@ -17,7 +17,7 @@ public class UserPage implements TemplateViewRoute {
     public ModelAndView handle(Request request, Response response) {
         Map<String, Object> models = new HashMap<>();
         User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
-        if (u == null) return null;
+        if (u == null) return new ErrorPage().handle(request, response);
         models.put("user", u);
         return new ModelAndView(models, "userPage");
     }
