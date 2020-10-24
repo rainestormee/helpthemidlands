@@ -9,7 +9,6 @@ import spark.Request;
 import spark.Response;
 import spark.TemplateViewRoute;
 
-import java.util.HashMap;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +18,7 @@ public class ViewOrdersPage implements TemplateViewRoute {
     @Override
     public ModelAndView handle(Request request, Response response) {
         User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
-        if (u == null) return null; // should be redirected anyway before this point is hit
+        if (u == null) return new ErrorPage().handle(request, response); // should be redirected anyway before this point is hit
         if (u.isVolunteer()) {
             return volunteerPage(request, response);
         } else {
@@ -36,6 +35,6 @@ public class ViewOrdersPage implements TemplateViewRoute {
     }
 
     public ModelAndView userPage(Request request, Response response) {
-        return null;
+        return new ErrorPage().handle(request, response);
     }
 }

@@ -32,14 +32,8 @@ public class RegisterPage implements TemplateViewRoute {
                 .build();
         addNewUserToDatabase(u);
         setCookie(response, u);// logs in the user
-        if (volunteer) {
-            response.redirect("/volunteerPage");
-            return "Welcome new Volunteer!";
-        }
-        else{
-            response.redirect("/userPage");
-            return "Welcome new client!";
-        }
+        response.redirect("/orders/view");
+        return "";
     };
 
     // HTTP POST

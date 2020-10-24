@@ -6,10 +6,12 @@ import com.hackthemidlands.processblinders.pages.*;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import spark.ModelAndView;
 import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -32,7 +34,7 @@ public final class Main {
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyVolunteer).collect(Collectors.toList())); // here i add the dummy volunteers 0, 1, 2
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyUser).collect(Collectors.toList())); // here i add the dummy users 0, 1, 2
 
-        get("/error", (re, rs) -> "error");
+        get("/error", (re, rs) -> new ModelAndView(new HashMap<>(), "error"), new ThymeleafTemplateEngine());
 
         get("/support", new SupportPage(), new ThymeleafTemplateEngine());
 
