@@ -40,7 +40,7 @@ public final class Main {
         get("/volunteerPage", new VolunteerPage(), new ThymeleafTemplateEngine());
 
         before("/userPage", clientOnly);
-        get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
+        get("/userPage", new UserPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
 
         path("/orders", () -> {

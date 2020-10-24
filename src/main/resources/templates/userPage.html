@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:with="$name=${user.name}">Welcome back <span value = "$name"></span>>!</title>
+    <title th:with="$name=${user.name}">Welcome back <span value="$name"></span>>!</title>
 </head>
 
 <script type="text/javascript">
@@ -29,12 +29,14 @@
 
 <body>
 <h1>Welcome back !</h1>
-<div class = "settings">
-    <input id = "set" type= "submit" value = "Settings">
+<div class="settings">
+    <form method="get" action="/settings">
+        <input id="set" type="submit" value="Settings">
+    </form>
 </div>
-<div class = "orders">
-    <button id = "placeOrder">Place an order</button>
-    <button id = "viewOrders">View your orders</button>
+<div class="orders">
+    <button id="placeOrder">Place an order</button>
+    <button id="viewOrders">View your orders</button>
 </div>
 </body>
 </html>

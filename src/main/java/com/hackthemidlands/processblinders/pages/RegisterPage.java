@@ -21,12 +21,12 @@ public class RegisterPage implements TemplateViewRoute {
             response.redirect("/register");
             return "";
         }
-        boolean volunteer = request.queryParams("validate").equalsIgnoreCase("Volunteer");
+        boolean volunteer = request.queryParams("validate").equalsIgnoreCase("I want to volunteer");
 
         User u = User.builder()
                 .firstName(request.queryParams("fname"))
                 .lastName(request.queryParams("lname"))
-                .isVolunteer(request.queryParams("validate").equalsIgnoreCase("volunteer"))
+                .isVolunteer(volunteer)
                 .email(request.queryParams("email"))
                 .password(request.queryParams("password"))
                 .build();
