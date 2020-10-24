@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome back !</title>
-    <h1>What would you like to do?</h1>
 </head>
+
+<script type="text/javascript">
+    document.getElementById("placeOrder").onclick = function () {
+        location.href = "/placeOrder";
+    };
+
+    document.getElementById("viewOrder").onclick = function () {
+        location.href = "/viewOrder";
+    };
+
+</script>
+
 <body>
-<h2>Get Support</h2>
-<button> onclick="window.location.href='/placeOrder'">Place Order</button>
-<button> <!--onclick="window.location.href='/***'" >-->View Past Orders</button>
-
-<h2>Volunteer</h2>
-<button> <!--onclick="window.location.href='/receiveOrder'">-->Make a delivery</button>
-<button> <!--onclick="window.location.href='/***'" >-->View Past Deliveries</button>
-
-<p>By using this service you agree to our <a href="tos">Terms of Service</a></p>
-
+<h1>Welcome back !</h1>
+<div class = "orders">
+    <button id = "placeOrder">Place an order</button>
+    <button id = "viewOrders">View your orders</button>
+</div>
 </body>
 </html>

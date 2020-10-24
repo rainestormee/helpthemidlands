@@ -1,4 +1,4 @@
-package com.hackthemidlands.processblinders;
+package com.hackthemidlands.processblinders.pages;
 
 import spark.ModelAndView;
 import spark.Request;
@@ -7,7 +7,7 @@ import spark.TemplateViewRoute;
 
 import java.util.HashMap;
 
-public class UserPageViewRoute implements TemplateViewRoute {
+public class UserPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {

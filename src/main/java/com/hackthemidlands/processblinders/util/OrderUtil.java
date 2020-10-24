@@ -4,9 +4,7 @@ import com.hackthemidlands.processblinders.api.Order;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class OrderUtil {
 
@@ -26,10 +24,10 @@ public class OrderUtil {
     }
 
     public static Order findOrderFromDatabase(int id) {
-        return allValidOrders.stream().filter(o -> o.getID()==id).findFirst().orElse(null);
+        return allValidOrders.stream().filter(o -> o.getID() == id).findFirst().orElse(null);
     }
 
     public static boolean isPending(Order order) {
-        return order.getStatus().getNum()==0;
+        return order.getStatus().getNum() == 0;
     }
 }

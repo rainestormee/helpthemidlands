@@ -1,11 +1,18 @@
 package com.hackthemidlands.processblinders.api;
 
-public enum OrderStatus {
-    PENDING(0), ACCEPTED(1), COMPLETED(2), CANCELLED(3);
-    int i;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-    OrderStatus(int i) {
+@Getter
+public enum OrderStatus {
+    PENDING(0, "Pending"), ACCEPTED(1, "Accepted"), COMPLETED(2, "Completed"), CANCELLED(3, "Cancelled");
+
+    int i;
+    String string;
+
+    OrderStatus(int i, String string) {
         this.i = i;
+        this.string = string;
     }
 
     public OrderStatus getFromCode(int j) {
