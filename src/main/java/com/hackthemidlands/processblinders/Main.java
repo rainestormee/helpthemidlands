@@ -38,13 +38,7 @@ public final class Main {
 
         get("/support", new SupportPage(), new ThymeleafTemplateEngine());
 
-        before("/volunteerPage", volunteerOnly);
-        get("/volunteerPage", new VolunteerPage(), new ThymeleafTemplateEngine());
-
-        before("/userPage", clientOnly);
-        get("/userPage", new UserPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
-        get("/viewOrders", new ViewOrdersPage(), new ThymeleafTemplateEngine());
 
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();

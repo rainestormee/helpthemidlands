@@ -2,6 +2,7 @@ package com.hackthemidlands.processblinders.pages;
 
 import com.hackthemidlands.processblinders.api.User;
 import spark.RouteGroup;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static com.hackthemidlands.processblinders.util.CookieUtil.*;
 import static com.hackthemidlands.processblinders.util.FilterUtil.*;
@@ -34,5 +35,6 @@ public class DevPage {
             setCookie(res, User.builder().build());
             return "You have been logged out.";
         });
+        get("/viewOrders", new ViewOrdersPage(), new ThymeleafTemplateEngine());
     };
 }
