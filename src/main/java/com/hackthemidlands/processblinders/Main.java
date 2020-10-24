@@ -26,6 +26,7 @@ public final class Main {
     @Getter
     public static final List<Order> allValidOrders = new ArrayList<>();
 
+
     public static Filter setSession = (Request request, Response response) -> {
         if (hasCookie(request)) {
             String cookie = getCookie(request);
@@ -36,6 +37,8 @@ public final class Main {
             } else {
                 response.redirect("/dev/fuck-off");
             }
+        } else {
+            response.redirect("/dev/fuck-off");
         }
     };
 
@@ -60,8 +63,9 @@ public final class Main {
         staticFileLocation("/public");
         port(8080);
 
-        allValidUsers.add(new User());
-        allValidUsers.add(new User("test", "admin", "admin@admin.com", "pass"));
+        allValidUsers.add(User.dummyVolunteer(0));
+        allValidUsers.add(User.dummyVolunteer(1));
+        allValidUsers.add(User.dummyVolunteer(3));
 
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
@@ -71,8 +75,10 @@ public final class Main {
             post("", (re, rs) -> {
                 Set<String> params = re.queryParams();
                 List<String> expectedParams = Arrays.asList("fname", "lname", "validate", "email", "password");
-                if (re.queryParams("validate") == null) {
+                if (!expectedParams.containsAll(params)) {
+                    // it means we do not have all of the complete form data, so we can send them back to the login page
                     rs.redirect("/register");
+                    return "";
                 }
                 if (re.queryParams("validate").equalsIgnoreCase("Volunteer")) {
                     return "volunteer";
@@ -85,14 +91,19 @@ public final class Main {
             before("/protected", setSession);
             get("/protected", (req, res) -> {
                 User u = getUserFromEmail(getCookie(req));
+                if (u == null) return "";
                 return "Your name is " + u.getFirstName() + " " + u.getLastName();
             });
             get("/fuck-off", (req, res) -> "You have been fucked off");
             get("/login", (req, res) -> {
-                loggedInUsers.put(new User().getEmail(), new User());
-                System.err.println("YOU ARE SUPPOSED TO BE LOGGED IN HERE");
-                setCookie(res, new User());
-                return "You have been logged in.";
+                User u = User.dummyVolunteer(0);
+                loggedInUsers.put(u.getEmail(), u);
+                setCookie(res, u);
+                return "You have been logged as: " + u.getEmail();
+            });
+            get("/logout", (req, res) -> {
+                setCookie(res, User.builder().build());
+                return "You have been logged out.";
             });
         });
     }
