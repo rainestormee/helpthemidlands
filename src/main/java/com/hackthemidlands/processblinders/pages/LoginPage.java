@@ -26,7 +26,7 @@ public class LoginPage implements TemplateViewRoute {
         }
         setCookie(response, u);
         if(u.isVolunteer()){
-            response.redirect("volunteerPage");
+            response.redirect("/volunteerPage");
         }
         else
             response.redirect("/userPage");
