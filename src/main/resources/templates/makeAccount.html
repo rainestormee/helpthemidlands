@@ -30,39 +30,19 @@ input.frontPage{
 </style>
 
 <script>
-    function validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-    }
 
-    function validate() {
-    const $result = $("#result");
-    const email = $("#email").val();
-    $result.text("");
-
-    if (validateEmail(email)) {
-    $result.text(email + " is valid :)");
-    $result.css("color", "green");
-    } else {
-    $result.text(email + " is not valid :(");
-    $result.css("color", "red");
-    }
-    return false;
-    }
-
-    $("#validate").on("click", validate);
 </script>
 
 <body>
 <div class = "registerForm">
     <h1 style="color: #689bca;"> Register </h1><br>
-    <form action = "validateEmail()" class = "registerPage">
+    <form class = "registerPage">
         <input type="text" id="fname" name="fname" placeholder="First Name" style="color: #336699;"><br>
         <input type="text" id="lname" name="lname" placeholder="Last Name" style="color: #336699;"><br>
         <input type="text" id="email" name="email" placeholder="Email" style="color: #336699;"><br>
         <input type = "password" id = "password" placeholder = "Password" style="color: #336699;"><br><br><br>
-        <button id = "validate1" type = "submit" formmethod = "post" onclick="window.location.href = '/register/volunteer'" style="color: #336699;"> <label id="volunteer"> I want to volunteer</label></button>
-        <button id = "validate2" type = "submit" formmethod = "post" onclick="window.location.href = '/register/client'" style="color: #336699;"> <label id="client"> I need support</label></button>
+        <button id = "validate1" type = "submit" formmethod = "post" onclick = "window.location.href = '/register/volunteer'" style="color: #336699;"> <label id="volunteer"> I want to volunteer</label></button>
+        <button id = "validate2" type = "submit" formmethod = "post" onclick = "window.location.href = '/register/client'" style="color: #336699;"> <label id="client"> I need support</label></button>
     </form>
 </div>
 </body>
