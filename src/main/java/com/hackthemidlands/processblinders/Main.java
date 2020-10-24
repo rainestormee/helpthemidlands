@@ -24,12 +24,12 @@ public final class Main {
 
     @Getter
     private static final List<User> allValidUsers = new ArrayList<>();
+
     public static Filter setSession = (Request request, Response response) -> {
         if (hasCookie(request)) {
             String cookie = getCookie(request);
             System.out.println(cookie);
             User user = getUserFromEmail(cookie);
-            System.out.println(user.getFirstName());
             if (user != null) {
                 loggedInUsers.put(user.getEmail(), user);
             } else {
@@ -71,14 +71,15 @@ public final class Main {
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
         get("/login/makeAccount", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
         path("/register", () -> {
-            post("/", (re, rs) -> {
-                if (re.queryParams("action").equalsIgnoreCase("Volunteer")) {
+            post("", (re, rs) -> {
+                if (re.queryParams("validate").equalsIgnoreCase("Volunteer")) {
+
                     return "volunteer";
                 }
-                return "client";
+                return "not volunteer";
             });
 
-            get("/", (re, rs) -> "I got a GET request silly");
+            get("", (re, rs) -> "I got a GET request silly");
         });
         path("/dev", () -> {
             before("/protected", setSession);
