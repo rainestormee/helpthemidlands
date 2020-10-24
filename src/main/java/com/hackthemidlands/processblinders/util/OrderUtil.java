@@ -26,7 +26,7 @@ public class OrderUtil {
     }
 
     public static Order findOrderFromDatabase(Int id) {
-        return allValidOrder.stream().filter(o -> o.getID().equalsIgnoreCase(id)).findFirst().orElse(null);
+        return allValidOrder.stream().filter(o -> o.getID()==id).findFirst().orElse(null);
     }
 
     public static boolean isPending(Order order) {
