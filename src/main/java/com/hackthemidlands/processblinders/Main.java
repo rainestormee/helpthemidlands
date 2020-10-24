@@ -42,6 +42,7 @@ public final class Main {
         before("userPage", clientOnly);
         get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
+        get("/viewOrders", new ViewOrdersPage(), new ThymeleafTemplateEngine());
 
         path("/settings", () -> {
             SettingsPage settingsPage = new SettingsPage();
