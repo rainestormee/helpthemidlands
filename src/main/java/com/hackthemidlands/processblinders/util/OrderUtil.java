@@ -1,15 +1,13 @@
 package com.hackthemidlands.processblinders.util;
 
 import com.hackthemidlands.processblinders.api.Order;
+import com.hackthemidlands.processblinders.api.User;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderUtil {
-
-    // @Getter
-    // private static final Map<String, User> loggedInUsers = new HashMap<>();
 
     @Getter
     private static final List<Order> allValidOrders = new ArrayList<>();
