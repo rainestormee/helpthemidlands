@@ -6,7 +6,9 @@
 </head>
 
 <script type="text/javascript">
-
+    document.getElementById("set").onclick = function () {
+        location.href = "/settings";
+    };
 </script>
 
 <style>
@@ -14,10 +16,17 @@
         font-family: "TVerdana", Geneva, sans-serif;
         background-color: #c6d9eb;
     }
+    .settings{
+      position: absolute;
+      left: 90%;
+    }
 </style>
 
 <body>
 <h1>Welcome back !</h1>
+<div class = "settings">
+    <button id = "set>Settings</button>
+</div>
 <div class = "orders">
     <button id = "placeOrder">Available orders:</button>
 </div>
