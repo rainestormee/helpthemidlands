@@ -22,6 +22,7 @@ public class SettingsPage implements TemplateViewRoute {
 
     public Route post = (Request request, Response Response) -> {
         // DO CODE FOR UPDATING USER HERE
+
         return "Your account has been updated! :)";
     };
 }
