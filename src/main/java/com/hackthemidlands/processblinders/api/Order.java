@@ -11,5 +11,6 @@ public class Order {
     private double maxPrice;
     private String location;
     private OrderStatus status;
+    private User user;
     //time window?
 }
