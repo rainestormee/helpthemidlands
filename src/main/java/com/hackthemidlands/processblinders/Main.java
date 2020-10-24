@@ -10,10 +10,7 @@ import spark.Response;
 import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.*;
 
@@ -62,24 +59,23 @@ public final class Main {
         allValidUsers.add(new User());
         allValidUsers.add(new User("test", "admin", "admin@admin.com", "pass"));
 
-        get("/test/test", new TestViewRoute(), new ThymeleafTemplateEngine());
-        get("/hello", (req, res) -> "Hello World");
-        get("/test", (req, res) -> "timer");
-        get("/goodbye/:name", (req, res) -> "See ya, " + req.params(":name"));
-        get("/thyme", new TestViewRoute(), new ThymeleafTemplateEngine());
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
-        get("/login/makeAccount", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
+
+        get("/login", new TestViewRoute(), new ThymeleafTemplateEngine());
         path("/register", () -> {
             post("", (re, rs) -> {
+                Set<String> params = re.queryParams();
+                List<String> expectedParams = Arrays.asList("");
+                if (re.queryParams("validate") == null) {
+                    rs.redirect("/register");
+                }
                 if (re.queryParams("validate").equalsIgnoreCase("Volunteer")) {
-
                     return "volunteer";
                 }
                 return "not volunteer";
             });
-
-            get("", (re, rs) -> "I got a GET request silly");
+            get("/register", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
         });
         path("/dev", () -> {
             before("/protected", setSession);
