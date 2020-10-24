@@ -1,6 +1,7 @@
 package com.hackthemidlands.processblinders.pages;
 
 import com.hackthemidlands.processblinders.api.User;
+import com.hackthemidlands.processblinders.util.RequestUtil;
 import spark.*;
 
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class RegisterPage implements TemplateViewRoute {
 
     public Route post = (Request request, Response response) -> {
         Set<String> params = request.queryParams();
-        if (!params.containsAll(Arrays.asList("fname", "lname", "validate", "email", "password"))) {
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "validate", "email", "password")) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
             response.redirect("/register");
             return "";
