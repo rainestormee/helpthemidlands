@@ -33,6 +33,9 @@ public final class Main {
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyVolunteer).collect(Collectors.toList()));
 
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
+        get("/volunteerPage", new VolunteerPageViewRoute(), new ThymeleafTemplateEngine());
+        get("/userPage", new VolunteerPageViewRoute(), new ThymeleafTemplateEngine());
+
 
         path("/login", () -> {
             LoginPage loginPage = new LoginPage();

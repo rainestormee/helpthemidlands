@@ -1,9 +1,23 @@
 package com.hackthemidlands.processblinders.api;
 
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+
+import static spark.Spark.post;
+
 public class VolunteerMainPage {
     public static void main(String[] argv) {
-        //   Main.getAllValidOrders().stream().filter(o -> o.getUser().getPostcode());
+
+        //Main.getAllValidOrders().stream().filter(o -> o.getUser().getPostcode());
+        String userPostcode = "B15 3AS", volunteerPostcode = "";
+        String jsonString = "{postcodes : [" + userPostcode + ", " + volunteerPostcode + "] }";
+       /* GsonBuilder builder = new GsonBuider();
+        Gson gson = buider.create();
+        post("api.postcodes.io/postcodes", (req, res) ->
+                req.equals(gson.toJson(jsonString))
+        );
         getLatitudeAndLongitude("B15 3AS");
+        */
     }
 
     public static void getLatitudeAndLongitude(String postcode) {
