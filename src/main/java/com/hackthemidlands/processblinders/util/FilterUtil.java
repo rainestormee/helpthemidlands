@@ -39,7 +39,7 @@ public class FilterUtil {
                 response.redirect("/login");
             } else {
                 if (!user.isVolunteer()) {
-                    response.redirect("/");
+                    response.redirect("/error");
                 }
             }
         }
@@ -55,7 +55,7 @@ public class FilterUtil {
                 response.redirect("/login");
             } else {
                 if (user.isVolunteer()) {
-                    response.redirect("/");
+                    response.redirect("/error");
                 }
             }
         }
