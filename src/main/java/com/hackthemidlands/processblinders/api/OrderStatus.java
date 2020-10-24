@@ -22,4 +22,8 @@ public enum OrderStatus {
                 return null;
         }
     }
+
+    public int getNum(){
+        return this.i;
+    }
 }

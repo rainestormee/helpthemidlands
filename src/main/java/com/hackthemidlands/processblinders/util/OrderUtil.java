@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class OrderUtil {
 
-    @Getter
-    private static final Map<String, User> loggedInUsers = new HashMap<>();
+    // @Getter
+    // private static final Map<String, User> loggedInUsers = new HashMap<>();
 
     @Getter
-    private static final List<User> allValidUsers = new ArrayList<>();
+    private static final List<Order> allValidOrders = new ArrayList<>();
 
 
     public static boolean addNewOrderToDatabase(Order order) {
@@ -25,11 +25,11 @@ public class OrderUtil {
         return true;
     }
 
-    public static Order findOrderFromDatabase(Int id) {
-        return allValidOrder.stream().filter(o -> o.getID()==id).findFirst().orElse(null);
+    public static Order findOrderFromDatabase(int id) {
+        return allValidOrders.stream().filter(o -> o.getID()==id).findFirst().orElse(null);
     }
 
     public static boolean isPending(Order order) {
-        return order.getStatus()==0;
+        return order.getStatus().getNum()==0;
     }
 }
