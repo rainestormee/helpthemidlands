@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <title>Register</title>
 </head>
 
@@ -55,40 +55,39 @@
 </script>
 
 <body>
-    <div class="orderForm">
-        <h1 style="color: #689bca;"> Register </h1><br>
-        <form action="/support" class="orderPage" method="post">
-            <input id="maxPrice" name="maxPrice" placeholder="Maximum Price" style="color: #336699;" type="number"><br>
+<div class="orderForm">
+    <h1 style="color: #689bca;"> Register </h1><br>
+    <form action="/support" class="orderPage" method="post">
+        <input id="maxPrice" name="maxPrice" placeholder="Maximum Price" style="color: #336699;" type="number"><br>
 
 
-            <input type="radio" id="male" name="gender" value="male">
-            <label for="male">Male</label><br>
-            <input type="radio" id="female" name="gender" value="female">
-            <label for="female">Female</label><br>
-            <input type="radio" id="other" name="gender" value="other">
-            <label for="other">Other</label>
+        <input id="male" name="gender" type="radio" value="male">
+        <label for="male">Male</label><br>
+        <input id="female" name="gender" type="radio" value="female">
+        <label for="female">Female</label><br>
+        <input id="other" name="gender" type="radio" value="other">
+        <label for="other">Other</label>
 
 
-            <fieldset id="items">
-                <legend>Items</legend>
-            </fieldset>
-            <br><br><br>
-            <input type="button" value="Add a field" class="add" id="add" />
-            <input id="submit" name="submit" style="color: #336699;" type="submit" value="Submit"><label id="volunteer">
-                Submit</label>
+        <fieldset id="items">
+            <legend>Items</legend>
+        </fieldset>
+        <br><br><br>
+        <input class="add" id="add" type="button" value="Add a field"/>
+        <input id="submit" name="submit" style="color: #336699;" type="submit" value="Submit"><label id="volunteer">
+        Submit</label>
 
-        </form>
-    </div>
+    </form>
+</div>
 
-    <!-- <fieldset id="buildyourform">
-        <legend>Build your own form!</legend>
-    </fieldset>
-    <input type="button" value="Add a field" class="add" id="add" /> -->
+<!-- <fieldset id="buildyourform">
+    <legend>Build your own form!</legend>
+</fieldset>
+<input type="button" value="Add a field" class="add" id="add" /> -->
 
 </body>
 
 </html>
-
 
 
 <!-- reference -->

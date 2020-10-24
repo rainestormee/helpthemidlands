@@ -17,7 +17,7 @@ public class Order {
     private User user;
     private User volunteer;
 
-    public int getID(){
+    public int getID() {
         return this.id;
     }
     //time window?

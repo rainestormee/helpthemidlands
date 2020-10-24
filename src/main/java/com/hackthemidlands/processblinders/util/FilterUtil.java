@@ -5,8 +5,9 @@ import spark.Filter;
 import spark.Request;
 import spark.Response;
 
-import static com.hackthemidlands.processblinders.util.CookieUtil.*;
-import static com.hackthemidlands.processblinders.util.UserUtil.*;
+import static com.hackthemidlands.processblinders.util.CookieUtil.getCookie;
+import static com.hackthemidlands.processblinders.util.CookieUtil.hasCookie;
+import static com.hackthemidlands.processblinders.util.UserUtil.getLoggedInUsers;
 
 public class FilterUtil {
 
