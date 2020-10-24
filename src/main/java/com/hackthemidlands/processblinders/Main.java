@@ -1,5 +1,6 @@
 package com.hackthemidlands.processblinders;
 
+import com.hackthemidlands.processblinders.api.Order;
 import com.hackthemidlands.processblinders.api.User;
 import lombok.Getter;
 import org.slf4j.Logger;
@@ -21,6 +22,9 @@ public final class Main {
 
     @Getter
     private static final List<User> allValidUsers = new ArrayList<>();
+
+    @Getter
+    public static final List<Order> allValidOrders = new ArrayList<>();
 
     public static Filter setSession = (Request request, Response response) -> {
         if (hasCookie(request)) {
@@ -66,7 +70,7 @@ public final class Main {
         path("/register", () -> {
             post("", (re, rs) -> {
                 Set<String> params = re.queryParams();
-                List<String> expectedParams = Arrays.asList("");
+                List<String> expectedParams = Arrays.asList("fname", "lname", "validate", "email", "password");
                 if (re.queryParams("validate") == null) {
                     rs.redirect("/register");
                 }
@@ -75,7 +79,7 @@ public final class Main {
                 }
                 return "not volunteer";
             });
-            get("/register", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
+            get("", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
         });
         path("/dev", () -> {
             before("/protected", setSession);
