@@ -37,6 +37,7 @@ public final class Main {
         get("/error", (re, rs) -> new ModelAndView(new HashMap<>(), "error"), new ThymeleafTemplateEngine());
 
         get("/support", new SupportPage(), new ThymeleafTemplateEngine());
+        get("/frontPage", new FrontPage(), new ThymeleafTemplateEngine());
 
         before("/volunteerPage", volunteerOnly);
         get("/volunteerPage", new VolunteerPage(), new ThymeleafTemplateEngine());
