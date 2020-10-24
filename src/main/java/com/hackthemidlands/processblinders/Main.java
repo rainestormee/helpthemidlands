@@ -73,15 +73,24 @@ public final class Main {
         path("/login", () -> {
             get("", new TestViewRoute(), new ThymeleafTemplateEngine());
             post("", (re, rs) -> {
-                return "";
+                Set<String> params = re.queryParams();
+                if (!params.containsAll(Arrays.asList("email", "password"))) {
+                    // rs.redirect("/login");
+                    return "Invalid login credentials";
+                }
+                User u = findUserFromDatabase(re.queryParams("email"));
+                if (u == null || !u.getPassword().equals(re.queryParams("password"))) {
+                    return "Invalid login credentials";
+                }
+                setCookie(rs, u);
+                return "Successfully logged in as: " + u.getFirstName() + " " + u.getLastName();
             });
         });
 
         path("/register", () -> {
             post("", (re, rs) -> {
                 Set<String> params = re.queryParams();
-                List<String> expectedParams = Arrays.asList("fname", "lname", "validate", "email", "password");
-                if (!expectedParams.containsAll(params)) {
+                if (!params.containsAll(Arrays.asList("fname", "lname", "validate", "email", "password"))) {
                     // it means we do not have all of the complete form data, so we can send them back to the login page
                     rs.redirect("/register");
                     return "";
