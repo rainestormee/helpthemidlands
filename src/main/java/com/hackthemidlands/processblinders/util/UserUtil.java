@@ -32,8 +32,4 @@ public class UserUtil {
     public static boolean isLoggedIn(User user) {
         return loggedInUsers.containsValue(user);
     }
-
-    public static User getUserFromEmail(String email) {
-        return findUserFromDatabase(email);
-    }
 }

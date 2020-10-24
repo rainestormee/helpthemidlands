@@ -14,9 +14,15 @@ public class DevPage {
     public RouteGroup getRoutes = () -> {
         before("/protected", requiresLogin);
         get("/protected", (req, res) -> {
-            User u = getUserFromEmail(getCookie(req));
+            User u = findUserFromDatabase(getCookie(req));
             if (u == null) return "";
             return "Your name is " + u.getFirstName() + " " + u.getLastName();
+        });
+        before("/volunteers-only", volunteerOnly);
+        get("/volunteers-only", (re, rs) -> {
+            User u = findUserFromDatabase(getCookie(re));
+            if (u == null || !u.isVolunteer()) return "";
+            return "Hello volunteer!";
         });
         get("/login", (req, res) -> {
             User u = User.dummyVolunteer(0);

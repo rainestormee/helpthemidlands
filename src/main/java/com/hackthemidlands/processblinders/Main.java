@@ -28,14 +28,13 @@ public final class Main {
         staticFileLocation("/public");
         port(8080);
 
-        getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyVolunteer).collect(Collectors.toList()));
+        getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyVolunteer).collect(Collectors.toList())); // here i add the dummy volunteers 0, 1, 2
+        getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyUser).collect(Collectors.toList())); // here i add the dummy users 0, 1, 2
 
         get("/support", new SupportPage(), new ThymeleafTemplateEngine());
         get("/volunteerPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
-
-
 
         path("/login", () -> {
             LoginPage loginPage = new LoginPage();
