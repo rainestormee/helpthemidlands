@@ -39,10 +39,15 @@ public final class Main {
         before("/volunteerPage", volunteerOnly);
         get("/volunteerPage", new VolunteerPage(), new ThymeleafTemplateEngine());
 
-        before("userPage", clientOnly);
+        before("/userPage", clientOnly);
         get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
         get("/viewOrders", new ViewOrdersPage(), new ThymeleafTemplateEngine());
+
+        path("/orders", () -> {
+            ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
+            get("/view", viewOrdersPage, new ThymeleafTemplateEngine());
+        });
 
         path("/settings", () -> {
             SettingsPage settingsPage = new SettingsPage();

@@ -15,6 +15,7 @@ public class Order {
     private String location;
     private OrderStatus status;
     private User user;
+    private User volunteer;
 
     public int getID(){
         return this.id;
