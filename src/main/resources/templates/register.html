@@ -31,12 +31,7 @@
 </style>
 
 <script type="text/javascript">
-    document.getElementById("validate1").onclick = function1 () {
-        window.location.href = "/volunteerPage";
-    };
-    document.getElementById("validate2").onclick = function2 () {
-        location.href = "/userPage";
-    };
+
 </script>
 
 <body>
@@ -46,11 +41,12 @@
         <input id="fname" name="fname" placeholder="First Name" style="color: #336699;" type="text"><br>
         <input id="lname" name="lname" placeholder="Last Name" style="color: #336699;" type="text"><br>
         <input id="email" name="email" placeholder="Email" style="color: #336699;" type="text"><br>
-        <input id="password" name="password" placeholder="Password" style="color: #336699;" type="password"><br><br><br>
+        <input id="password" name="password" placeholder="Password" style="color: #336699;" type="password"><br>
+        <input id="postcode" name="postcode" placeholder="Postcode" style="color: #336699;" type="text"><br><br><br>
         <input id="validate1" name="validate" style="color: #336699;"
-               type="submit" value="I want to volunteer">
+               type="submit" value="I want to volunteer" onclick = "location.href = '/volunteerPage'">
         <input id="validate2" name="validate" style="color: #336699;"
-               type="submit" value="I need support">
+               type="submit" value="I need support" onclick = "location.href = '/userPage'">
     </form>
 </div>
 </body>

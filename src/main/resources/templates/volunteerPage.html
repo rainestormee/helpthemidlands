@@ -5,18 +5,12 @@
     <title>Welcome back !</title>
 </head>
 
-<script type="text/javascript">
-    document.getElementById("set").onclick = function () {
-        location.href = "/settings";
-    };
-</script>
-
 <style>
     body {
         font-family: "TVerdana", Geneva, sans-serif;
         background-color: #c6d9eb;
     }
-    .settings{
+    .setts{
       position: absolute;
       left: 90%;
     }
@@ -24,8 +18,8 @@
 
 <body>
 <h1>Welcome back !</h1>
-<div class = "settings">
-    <input id = "set" type= "submit" value = "Settings">
+<div class = "setts">
+    <button id = "set" value = "Settings" onclick = "location.href = '/settings'">Settings</button>
 </div>
 
 <div class = "orders">
