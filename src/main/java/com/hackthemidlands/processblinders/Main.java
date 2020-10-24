@@ -5,6 +5,8 @@ import com.hackthemidlands.processblinders.api.User;
 import com.hackthemidlands.processblinders.pages.DevPage;
 import com.hackthemidlands.processblinders.pages.LoginPage;
 import com.hackthemidlands.processblinders.pages.RegisterPage;
+import com.hackthemidlands.processblinders.util.SupportViewRoute;
+import com.hackthemidlands.processblinders.util.VolunteerPageViewRoute;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,11 @@ public final class Main {
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyVolunteer).collect(Collectors.toList()));
 
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
+        get("/volunteerPage", new VolunteerPageViewRoute(), new ThymeleafTemplateEngine());
+        get("/userPage", new VolunteerPageViewRoute(), new ThymeleafTemplateEngine());
+        get("/placeOrder", new PlaceOrderViewRoute(), new ThymeleafTemplateEngine());
+
+
 
         path("/login", () -> {
             LoginPage loginPage = new LoginPage();

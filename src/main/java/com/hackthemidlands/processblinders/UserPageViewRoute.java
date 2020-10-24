@@ -7,10 +7,10 @@ import spark.TemplateViewRoute;
 
 import java.util.HashMap;
 
-public class MakeAccountViewRoute implements TemplateViewRoute {
+public class UserPageViewRoute implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "makeAccount");
+        return new ModelAndView(new HashMap<>(), "userPage");
     }
 }

@@ -22,6 +22,7 @@ public class RegisterPage implements TemplateViewRoute {
             return "";
         }
         boolean volunteer = request.queryParams("validate").equalsIgnoreCase("Volunteer");
+
         User u = User.builder()
                 .firstName(request.queryParams("fname"))
                 .lastName(request.queryParams("lname"))
@@ -32,9 +33,13 @@ public class RegisterPage implements TemplateViewRoute {
         addNewUserToDatabase(u);
         setCookie(response, u);// logs in the user
         if (volunteer) {
+            response.redirect("/volunteerPage");
             return "Welcome new Volunteer!";
         }
-        return "Welcome new client!";
+        else{
+            response.redirect("/userPage");
+            return "Welcome new client!";
+        }
     };
 
     // HTTP POST

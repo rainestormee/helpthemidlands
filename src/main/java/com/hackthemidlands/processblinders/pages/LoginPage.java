@@ -25,6 +25,11 @@ public class LoginPage implements TemplateViewRoute {
             return "Invalid login credentials";
         }
         setCookie(response, u);
+        if(u.isVolunteer()){
+            response.redirect("/volunteerPage");
+        }
+        else
+            response.redirect("/userPage");
         return "Successfully logged in as: " + u.getFirstName() + " " + u.getLastName();
     };
 
