@@ -72,7 +72,9 @@ public final class Main {
 
         path("/login", () -> {
             get("", new TestViewRoute(), new ThymeleafTemplateEngine());
-            post("",(re,rs)-> "");
+            post("", (re, rs) -> {
+                return "";
+            });
         });
 
         path("/register", () -> {
@@ -84,10 +86,20 @@ public final class Main {
                     rs.redirect("/register");
                     return "";
                 }
-                if (re.queryParams("validate").equalsIgnoreCase("Volunteer")) {
-                    return "volunteer";
+                boolean volunteer = re.queryParams("validate").equalsIgnoreCase("Volunteer");
+                User u = User.builder()
+                        .firstName(re.queryParams("fname"))
+                        .lastName(re.queryParams("lname"))
+                        .isVolunteer(re.queryParams("validate").equalsIgnoreCase("volunteer"))
+                        .email(re.queryParams("email"))
+                        .password(re.queryParams("password"))
+                        .build();
+                addNewUserToDatabase(u);
+                setCookie(rs, u);// logs in the user
+                if (volunteer) {
+                    return "Welcome new Volunteer!";
                 }
-                return "not volunteer";
+                return "Welcome new client!";
             });
             get("", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
         });

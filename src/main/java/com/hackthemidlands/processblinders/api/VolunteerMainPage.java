@@ -13,6 +13,7 @@ public class VolunteerMainPage{
       gc.main(postcode);
       String la = gc.getLat();
       String lon = gc.getLongit();
+      if (la == null || lon == null) return;
       int a = Integer.parseInt(la);
       int b = Integer.parseInt(lon);
       System.out.println(a + " " + b);
