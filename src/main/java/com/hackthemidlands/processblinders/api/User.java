@@ -26,9 +26,9 @@ public class User {
 
     public static User dummyVolunteer(int i) {
         return new UserBuilder()
-                .email("dummy" + i + "@test.test")
+                .email("volunteer" + i + "@v.co")
                 .isVolunteer(true)
-                .firstName("Dummy")
+                .firstName("Volunteer")
                 .lastName(i + "")
                 .password("password" + i)
                 .build();
@@ -36,7 +36,7 @@ public class User {
 
     public static User dummyUser(int i){
         return new UserBuilder()
-                .email("user" + i + "@test.test")
+                .email("user" + i + "@u.co")
                 .isVolunteer(false)
                 .firstName("User")
                 .lastName(i + "")
