@@ -57,16 +57,16 @@
 <body>
     <div class="orderForm">
         <h1 style="color: #689bca;"> Register </h1><br>
-        <form action="/support" class="orderPage" method="post">
+        <form action="/placeOrder" class="orderPage" method="post">
             <input id="maxPrice" name="maxPrice" placeholder="Maximum Price" style="color: #336699;" type="number"><br>
 
 
-            <input type="radio" id="male" name="gender" value="male">
-            <label for="male">Male</label><br>
-            <input type="radio" id="female" name="gender" value="female">
-            <label for="female">Female</label><br>
-            <input type="radio" id="other" name="gender" value="other">
-            <label for="other">Other</label>
+            <label for="priority">Order priority:</label>
+            <select name="priority" id="priority" form="orderForm">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
 
 
             <fieldset id="items">
@@ -74,8 +74,7 @@
             </fieldset>
             <br><br><br>
             <input type="button" value="Add a field" class="add" id="add" />
-            <input id="submit" name="submit" style="color: #336699;" type="submit" value="Submit"><label id="volunteer">
-                Submit</label>
+            <input id="submit" name="submit" style="color: #336699;" type="submit" value="Submit">
 
         </form>
     </div>
