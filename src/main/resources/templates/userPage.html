@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome back !</title>
+    <title th:with="$name=${user.name}">Welcome back <span value = "$name"></span>>!</title>
 </head>
 
 <script type="text/javascript">
+    document.getElementById("set").onclick = function () {
+        location.href = "/settings";
+    };
+
     document.getElementById("placeOrder").onclick = function () {
         location.href = "/placeOrder";
     };
@@ -26,7 +30,7 @@
 <body>
 <h1>Welcome back !</h1>
 <div class = "settings">
-    <button class = "settings">Settings</button>
+    <button id = "set">Settings</button>
 </div>
 <div class = "orders">
     <button id = "placeOrder">Place an order</button>

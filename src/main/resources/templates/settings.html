@@ -5,16 +5,34 @@
     <title>Settings</title>
 </head>
 <body>
-<form th:with="name=${user.firstName}">
 
-    <form action="/settings" class="registerPage" method="post">
-        <input id="fname" name="fname" placeholder="First Name" style="color: #336699;" type="text"><br>
-        <input id="lname" name="lname" placeholder="Last Name" style="color: #336699;" type="text"><br>
-        <input id="email" name="email" placeholder="Email" style="color: #336699;" type="text"><br>
-        <input id="password" name="password" placeholder="Password" style="color: #336699;" type="password"><br><br><br>
-        <input id="validate1" name="validate" style="color: #336699;"
-               type="submit" value="Volunteer"><label id="submit"> Update account</label>
-    </form>
+<script>
+function myFunction() {
+    var fn = document.getElementById("fname");
+    var ln = document.getElementById("lname");
+    var e = document.getElementById("email");
+    var p = document.getElementById("postcode");
+
+    var defaultFn = fn.defaultValue;
+    var currentFn = fn.value;
+    var defaultLn = ln.defaultValue;
+    var currentLn = ln.value;
+    var defaultE = e.defaultValue;
+    var currentE = e.value;
+    var defaultP = p.defaultValue;
+    var currentP = p.value;
+}
+
+</script>
+
+<p>Edit your account: </p>
+<form th:with="name=${user.firstName}, surname=${user.lastName}, mail=${user.email}, pc = ${user.postcode}">
+    Name: <input type="text" id="fname" th:attr="value=${name}">
+    Surname: <input type="text" id="lname" th:attr="value=${surname}">
+    Email: <input type="text" id="email" th:attr="value=${mail}">
+    Postcode: <input type = "text" id = "postcode" th:attr="value=${pc}">
+    <input type = "submit" value = "Make changes" onclick = "myFunction()">
+
 </form>
 </body>
 </html>

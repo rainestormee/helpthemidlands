@@ -39,7 +39,7 @@ public final class Main {
         before("/volunteerPage", volunteerOnly);
         get("/volunteerPage", new VolunteerPage(), new ThymeleafTemplateEngine());
 
-        before("userPage", clientOnly);
+        before("/userPage", clientOnly);
         get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
 
