@@ -43,6 +43,11 @@ public final class Main {
         get("/userPage", new VolunteerPage(), new ThymeleafTemplateEngine());
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
 
+        path("/orders", () -> {
+            ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
+            get("/view", viewOrdersPage, new ThymeleafTemplateEngine());
+        });
+
         path("/settings", () -> {
             SettingsPage settingsPage = new SettingsPage();
             get("", settingsPage, new ThymeleafTemplateEngine());

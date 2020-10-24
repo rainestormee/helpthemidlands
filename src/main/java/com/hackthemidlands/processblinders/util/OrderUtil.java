@@ -1,6 +1,7 @@
 package com.hackthemidlands.processblinders.util;
 
 import com.hackthemidlands.processblinders.api.Order;
+import com.hackthemidlands.processblinders.api.OrderStatus;
 import com.hackthemidlands.processblinders.api.User;
 import lombok.Getter;
 
@@ -27,5 +28,21 @@ public class OrderUtil {
 
     public static boolean isPending(Order order) {
         return order.getStatus().getNum() == 0;
+    }
+
+    public static boolean setVolunteer(Order order, User u) {
+        if (order == null) return false;
+        if (u == null) {
+            order.setVolunteer(null);
+            order.setStatus(OrderStatus.PENDING);
+        } else {
+            // TODO: Extend logic to not allow people to claim an already claimed order...
+            if (!isPending(order)) {
+                return false; // can't assign.
+            }
+            order.setVolunteer(u);
+            order.setStatus(OrderStatus.ACCEPTED);
+        }
+        return true; // successful
     }
 }

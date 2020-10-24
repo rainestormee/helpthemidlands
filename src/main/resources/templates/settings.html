@@ -5,7 +5,7 @@
     <title>Settings</title>
 </head>
 <body>
-<form th:with="name=${user.fname}">
+<form th:with="name=${user.firstName}">
 
     <form action="/settings" class="registerPage" method="post">
         <input id="fname" name="fname" placeholder="First Name" style="color: #336699;" type="text"><br>
