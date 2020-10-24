@@ -46,6 +46,6 @@ public class RegisterPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "makeAccount");
+        return new ModelAndView(new HashMap<>(), "register");
     }
 }
