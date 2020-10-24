@@ -1,0 +1,64 @@
+<!--DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        h1 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <button>I need support</button> <button onclick="window.location.href = '/login/volunteer'">I want to volunteer</button>
+</body>
+
+</html>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Volunteers</title>
+</head>
+
+<style>
+    body {
+        font-family: "TVerdana", Geneva, sans-serif;
+        background-color: #c6d9eb;
+    }
+
+    div.loginForm {
+        margin-left: 690px;
+        margin-right: 690px;
+        text-align: center;
+        border-style: solid;
+        border-color: #336699;
+        border-radius: 15px;
+    }
+
+    input.frontPage {
+        border-radius: 20px;
+        border-color: #336699;
+    }
+
+    .frontPage button {
+
+    }
+</style>
+<body>
+<div class="loginForm">
+    <h1 style="color: #689bca;"> Login </h1><br>
+    <form action="/login.java" class="frontPage">
+        <input id="email" name="email" placeholder="Email" style="color: #336699;" type="text"><br>
+        <input id="password" placeholder="Password" style="color: #336699;" type="password"><br>
+        <input style="color: #336699;" type="submit" value="Submit">
+    </form>
+    <br><br><br><br><br>
+    <p>Don't have an account yet? <a href="/login/makeAccount" style="color: #336699; ">Register here</a></p>
+</div>
+</body>
+</html>
