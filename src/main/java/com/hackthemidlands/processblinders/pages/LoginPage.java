@@ -12,7 +12,7 @@ import static com.hackthemidlands.processblinders.util.UserUtil.findUserFromData
 
 public class LoginPage implements TemplateViewRoute {
 
-    // HTTP GET
+    // HTTP POST
 
     public Route post = (Request request, Response response) -> {
         Set<String> params = request.queryParams();
@@ -28,7 +28,7 @@ public class LoginPage implements TemplateViewRoute {
         return "Successfully logged in as: " + u.getFirstName() + " " + u.getLastName();
     };
 
-    // HTTP POST
+    // HTTP GET
 
     @Override
     public ModelAndView handle(Request request, Response response) {
