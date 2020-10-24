@@ -22,6 +22,7 @@ public class RegisterPage implements TemplateViewRoute {
             return "";
         }
         boolean volunteer = request.queryParams("validate").equalsIgnoreCase("Volunteer");
+
         User u = User.builder()
                 .firstName(request.queryParams("fname"))
                 .lastName(request.queryParams("lname"))

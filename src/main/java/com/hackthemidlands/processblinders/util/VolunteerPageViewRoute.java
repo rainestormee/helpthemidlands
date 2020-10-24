@@ -1,4 +1,4 @@
-package com.hackthemidlands.processblinders;
+package com.hackthemidlands.processblinders.util;
 
 import spark.ModelAndView;
 import spark.Request;

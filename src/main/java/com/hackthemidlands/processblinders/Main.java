@@ -5,6 +5,8 @@ import com.hackthemidlands.processblinders.api.User;
 import com.hackthemidlands.processblinders.pages.DevPage;
 import com.hackthemidlands.processblinders.pages.LoginPage;
 import com.hackthemidlands.processblinders.pages.RegisterPage;
+import com.hackthemidlands.processblinders.util.SupportViewRoute;
+import com.hackthemidlands.processblinders.util.VolunteerPageViewRoute;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +37,8 @@ public final class Main {
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/volunteerPage", new VolunteerPageViewRoute(), new ThymeleafTemplateEngine());
         get("/userPage", new VolunteerPageViewRoute(), new ThymeleafTemplateEngine());
+        get("/placeOrder", new PlaceOrderViewRoute(), new ThymeleafTemplateEngine());
+
 
 
         path("/login", () -> {
