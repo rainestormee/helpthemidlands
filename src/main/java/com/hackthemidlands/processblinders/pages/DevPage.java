@@ -25,7 +25,7 @@ public class DevPage {
             return "Hello volunteer!";
         });
         get("/login", (req, res) -> {
-            User u = User.dummyVolunteer(0);
+            User u = User.dummyUser(0);
             getLoggedInUsers().put(u.getEmail(), u);
             setCookie(res, u);
             return "You have been logged as: " + u.getEmail();
