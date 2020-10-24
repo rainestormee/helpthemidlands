@@ -2,18 +2,20 @@ package com.hackthemidlands.processblinders.pages;
 
 import com.hackthemidlands.processblinders.api.User;
 import com.hackthemidlands.processblinders.util.RequestUtil;
+import com.hackthemidlands.processblinders.util.UserUtil;
 import spark.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
+import static com.hackthemidlands.processblinders.util.CookieUtil.getCookie;
 import static com.hackthemidlands.processblinders.util.CookieUtil.setCookie;
 import static com.hackthemidlands.processblinders.util.UserUtil.addNewUserToDatabase;
 
 public class RegisterPage implements TemplateViewRoute {
 
-    // HTTP GET
+    // HTTP POST
 
     public Route post = (Request request, Response response) -> {
         Set<String> params = request.queryParams();
@@ -37,10 +39,14 @@ public class RegisterPage implements TemplateViewRoute {
         return "";
     };
 
-    // HTTP POST
+    // HTTP GET
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "register");
+        if (UserUtil.findUserFromDatabase(getCookie(request)) != null) {
+            response.redirect("/orders/view");
+            return new ModelAndView(new HashMap<>(), null);
+        }
+        return new ModelAndView(new HashMap<>(), "/register");
     }
 }
