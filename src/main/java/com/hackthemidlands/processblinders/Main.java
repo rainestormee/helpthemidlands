@@ -2,7 +2,6 @@ package com.hackthemidlands.processblinders;
 
 import com.hackthemidlands.processblinders.api.User;
 import lombok.Getter;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Filter;
@@ -27,16 +26,27 @@ public final class Main {
     private static final List<User> allValidUsers = new ArrayList<>();
 
     public static boolean addNewUserToDatabase(User user) {
-        if (allValidUsers.stream().map(User::getEmail).anyMatch(u -> u.equalsIgnoreCase(user.getEmail()))) {
-            return false; // invalid! can't have a user with the same email as an existing user
+        if (findUserFromDatabase(user.getEmail()) != null) {
+            return false;
         }
         allValidUsers.add(user);
         return true;
     }
 
+    public static User findUserFromDatabase(String email) {
+        return allValidUsers.stream().filter(u -> u.getEmail().equalsIgnoreCase(email)).findFirst().orElse(null);
+    }
+
+    public static boolean isLoggedIn(User user) {
+        return loggedInUsers.containsValue(user);
+    }
+
     public static void main(String[] args) {
         Spark.exception(Exception.class, (exception, request, response) -> exception.printStackTrace()); // allow spark to internally handle exceptions
         staticFileLocation("/public");
+
+        allValidUsers.add(new User());
+        allValidUsers.add(new User("test", "admin", "admin@admin.com", "pass"));
 
         get("/test/test", new TestViewRoute(), new ThymeleafTemplateEngine());
         get("/hello", (req, res) -> "Hello World");
@@ -46,57 +56,50 @@ public final class Main {
         get("/support", new SupportViewRoute(), new ThymeleafTemplateEngine());
         get("/login/volunteer", new VolunteerViewRoute(), new ThymeleafTemplateEngine());
         get("/login/makeAccount", new MakeAccountViewRoute(), new ThymeleafTemplateEngine());
-        // hello world
-        // yeah it's a little clunky but it does the job and supports quite a few users, it doesn't really support using Ctrl+Z ect tho
-        get("/dev/login", (req, res) -> "You are :");
         path("/dev", () -> {
             before("/protected", setSession);
-            get("/protected", (req, res) -> "This is Protected");
+            get("/protected", (req, res) -> {
+                User u = getUserFromEmail(getCookie(req));
+                return "Your name is " + u.getFirstName() + " " + u.getLastName();
+            });
             get("/fuck-off", (req, res) -> "You have been fucked off");
             get("/login", (req, res) -> {
                 loggedInUsers.put(new User().getEmail(), new User());
-                setSession(req, new User());
+                System.err.println("YOU ARE SUPPOSED TO BE LOGGED IN HERE");
+                setCookie(res, new User());
                 return "You have been logged in.";
             });
         });
     }
 
     public static Filter setSession = (Request request, Response response) -> {
-        if (!hasSession(request)) {
-
-            String sessionId = getCookie(request);
-            System.out.println(sessionId);
-            User user = getUserFromSession(sessionId);
-
+        if (hasCookie(request)) {
+            String cookie = getCookie(request);
+            System.out.println(cookie);
+            User user = getUserFromEmail(cookie);
+            System.out.println(user.getFirstName());
             if (user != null) {
-                setSession(request, user);
+                loggedInUsers.put(user.getEmail(), user);
             } else {
                 response.redirect("/dev/fuck-off");
             }
         }
     };
 
-    public static boolean hasSession(Request request) {
-        if (request.session().attribute("user") == null)
-            return false;
-        return true;
+    public static void setCookie(Response response, User user) {
+        response.cookie("/", "email", user.getEmail(), -1, false);
+    }
+
+    public static boolean hasCookie(Request request) {
+        return request.cookie("email") != null;
     }
 
     public static String getCookie(Request request) {
-        return request.cookie("auth-code");
+        return request.cookie("email");
     }
 
-    public static void setSession(Request request, User user) {
-        request.session().attribute("user", user.getEmail());
-    }
-
-
-    public static void setSession(Response response, String cookie) {
-        response.cookie("auth-code", cookie);
-    }
-
-    public static User getUserFromSession(String sessionId) {
-        return loggedInUsers.getOrDefault(sessionId, null);
+    public static User getUserFromEmail(String email) {
+        return findUserFromDatabase(email);
     }
 
 }
