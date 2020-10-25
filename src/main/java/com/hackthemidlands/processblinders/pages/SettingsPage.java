@@ -18,10 +18,9 @@ public class SettingsPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-
         Map<String, Object> models = new HashMap<>();
         User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
-        if (u == null) return null;
+        if (u == null) return new ModelAndView(new HashMap<>(), null);
         models.put("user", u);
         return new ModelAndView(models, "settings");
     }

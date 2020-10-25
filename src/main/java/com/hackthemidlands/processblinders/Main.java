@@ -11,14 +11,13 @@ import spark.Spark;
 import spark.TemplateEngine;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.hackthemidlands.processblinders.util.OrderUtil.*;
-import static com.hackthemidlands.processblinders.util.UserUtil.*;
+import static com.hackthemidlands.processblinders.util.OrderUtil.getAllValidOrders;
+import static com.hackthemidlands.processblinders.util.UserUtil.getAllValidUsers;
 import static spark.Spark.*;
 
 public final class Main {
