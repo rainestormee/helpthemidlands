@@ -24,6 +24,10 @@
     .placeOrder{
         font-size: 18px;
     }
+
+    .selected{
+        border-color: green;
+    }
 </style>
 
 <body>
@@ -42,7 +46,7 @@
         <div th:each="item: ${order.shopList}">
             <p th:text="${item}"></p>
         </div>
-        <input style="color: #336699;" type="submit" value="Choose">
+        <input style="color: #336699;" type="submit" value="Choose" onclick="this.parentElement.parentElement.classList.toggle('selected')">
     </div><br>
 </div>
 </body>
