@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 public class Order {
 
-    private List<String> shopList;
+    private String shopList;
     private int id;
     private double maxPrice;
     private String location;

@@ -30,7 +30,7 @@ public class PlaceOrderPage implements TemplateViewRoute {
         }
 
         Order o = Order.builder()
-                .shopList(Arrays.asList(request.queryParams("items")))
+                .shopList(request.queryParams("items"))
                 .maxPrice(Integer.parseInt(request.queryParams("maxPrice")))
                 .priority(request.queryParams("password"))
                 .build();
