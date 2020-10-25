@@ -7,31 +7,31 @@
 <body>
 
 <script>
-function myFunction() {
-    var fn = document.getElementById("fname");
-    var ln = document.getElementById("lname");
-    var e = document.getElementById("email");
-    var p = document.getElementById("postcode");
+    function myFunction() {
+        var fn = document.getElementById("fname");
+        var ln = document.getElementById("lname");
+        var e = document.getElementById("email");
+        var p = document.getElementById("postcode");
 
-    var defaultFn = fn.defaultValue;
-    var currentFn = fn.value;
-    var defaultLn = ln.defaultValue;
-    var currentLn = ln.value;
-    var defaultE = e.defaultValue;
-    var currentE = e.value;
-    var defaultP = p.defaultValue;
-    var currentP = p.value;
-}
+        var defaultFn = fn.defaultValue;
+        var currentFn = fn.value;
+        var defaultLn = ln.defaultValue;
+        var currentLn = ln.value;
+        var defaultE = e.defaultValue;
+        var currentE = e.value;
+        var defaultP = p.defaultValue;
+        var currentP = p.value;
+    }
 
 </script>
 
 <p>Edit your account: </p>
 <form th:with="name=${user.firstName}, surname=${user.lastName}, mail=${user.email}, pc = ${user.postcode}">
-    Name: <input type="text" id="fname" th:attr="value=${name}">
-    Surname: <input type="text" id="lname" th:attr="value=${surname}">
-    Email: <input type="text" id="email" th:attr="value=${mail}">
-    Postcode: <input type = "text" id = "postcode" th:attr="value=${pc}">
-    <input type = "submit" value = "Make changes" onclick = "myFunction()">
+    Name: <input id="fname" th:attr="value=${name}" type="text">
+    Surname: <input id="lname" th:attr="value=${surname}" type="text">
+    Email: <input id="email" th:attr="value=${mail}" type="text">
+    Postcode: <input id="postcode" th:attr="value=${pc}" type="text">
+    <input onclick="myFunction()" type="submit" value="Make changes">
 
 </form>
 </body>

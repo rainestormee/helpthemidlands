@@ -10,6 +10,12 @@ import java.util.Map;
 
 public class SettingsPage implements TemplateViewRoute {
 
+    public Route post = (Request request, Response Response) -> {
+        // DO CODE FOR UPDATING USER HERE
+
+        return "Your account has been updated! :)";
+    };
+
     @Override
     public ModelAndView handle(Request request, Response response) {
 
@@ -19,10 +25,4 @@ public class SettingsPage implements TemplateViewRoute {
         models.put("user", u);
         return new ModelAndView(models, "settings");
     }
-
-    public Route post = (Request request, Response Response) -> {
-        // DO CODE FOR UPDATING USER HERE
-
-        return "Your account has been updated! :)";
-    };
 }

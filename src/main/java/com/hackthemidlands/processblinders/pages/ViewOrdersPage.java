@@ -18,7 +18,8 @@ public class ViewOrdersPage implements TemplateViewRoute {
     @Override
     public ModelAndView handle(Request request, Response response) {
         User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
-        if (u == null) return new ErrorPage().handle(request, response); // should be redirected anyway before this point is hit
+        if (u == null)
+            return new ErrorPage().handle(request, response); // should be redirected anyway before this point is hit
         HashMap<String, Object> models = new HashMap<>();
         models.put("user", u);
         if (u.isVolunteer()) {
