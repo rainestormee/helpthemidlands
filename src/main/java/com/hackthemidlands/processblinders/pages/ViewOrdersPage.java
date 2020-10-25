@@ -1,6 +1,5 @@
 package com.hackthemidlands.processblinders.pages;
 
-import com.hackthemidlands.processblinders.api.Order;
 import com.hackthemidlands.processblinders.api.User;
 import com.hackthemidlands.processblinders.util.CookieUtil;
 import com.hackthemidlands.processblinders.util.OrderUtil;
@@ -10,7 +9,6 @@ import spark.Request;
 import spark.Response;
 import spark.TemplateViewRoute;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
