@@ -23,6 +23,10 @@ public class OrderUtil {
         return true;
     }
 
+    public static void commitToOrder(){
+
+    }
+
     public static Order findOrderFromDatabase(int id) {
         return allValidOrders.stream().filter(o -> o.getID() == id).findFirst().orElse(null);
     }
