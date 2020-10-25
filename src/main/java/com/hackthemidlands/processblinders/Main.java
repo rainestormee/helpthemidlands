@@ -49,6 +49,13 @@ public final class Main {
 
         get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
 
+        path("/placeOrder", () -> {
+            PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+            post("", placeOrderPage.post);
+            get("", placeOrderPage, new ThymeleafTemplateEngine());
+        });
+
+
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
             get("/view", viewOrdersPage, new ThymeleafTemplateEngine());
