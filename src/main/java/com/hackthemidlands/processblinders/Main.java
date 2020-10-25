@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.ModelAndView;
 import spark.Spark;
+import spark.TemplateEngine;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import java.util.Arrays;
@@ -26,6 +27,7 @@ public final class Main {
 
     public static void main(String[] args) {
         Spark.exception(Exception.class, (exception, request, response) -> exception.printStackTrace()); // allow spark to internally handle exceptions
+        final TemplateEngine templateEngine = new ThymeleafTemplateEngine();
         staticFileLocation("/public");
         port(8080);
 
@@ -43,39 +45,39 @@ public final class Main {
 
         get("/error", (re, rs) -> new ModelAndView(new HashMap<>(), "error"), new ThymeleafTemplateEngine());
 
-        get("/support", new SupportPage(), new ThymeleafTemplateEngine());
-        get("/frontPage", new FrontPage(), new ThymeleafTemplateEngine());
+        get("/support", new SupportPage(), templateEngine);
+        get("/frontPage", new FrontPage(), templateEngine);
 
-        get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
+        get("/placeOrder", new PlaceOrderPage(), templateEngine);
 
         path("/placeOrder", () -> {
             PlaceOrderPage placeOrderPage = new PlaceOrderPage();
             post("", placeOrderPage.post);
-            get("", placeOrderPage, new ThymeleafTemplateEngine());
+            get("", placeOrderPage, templateEngine);
         });
 
 
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
-            get("/view", viewOrdersPage, new ThymeleafTemplateEngine());
+            get("/view", viewOrdersPage, templateEngine);
         });
 
         path("/settings", () -> {
             SettingsPage settingsPage = new SettingsPage();
-            get("", settingsPage, new ThymeleafTemplateEngine());
+            get("", settingsPage, templateEngine);
             post("", settingsPage.post);
         });
 
         path("/login", () -> {
             LoginPage loginPage = new LoginPage();
-            get("", loginPage, new ThymeleafTemplateEngine());
+            get("", loginPage, templateEngine);
             post("", loginPage.post);
         });
 
         path("/register", () -> {
             RegisterPage registerPage = new RegisterPage();
             post("", registerPage.post);
-            get("", registerPage, new ThymeleafTemplateEngine());
+            get("", registerPage, templateEngine);
         });
 
         path("/dev", new DevPage().getRoutes);
