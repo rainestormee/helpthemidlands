@@ -1,5 +1,8 @@
 package com.hackthemidlands.processblinders.pages;
 
+import com.hackthemidlands.processblinders.api.User;
+import com.hackthemidlands.processblinders.util.CookieUtil;
+import com.hackthemidlands.processblinders.util.UserUtil;
 import spark.*;
 
 import java.util.HashMap;
@@ -15,16 +18,24 @@ public class PlaceOrderPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
+        User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
+        if (u == null) {
+            response.redirect("/error");
+            return new ModelAndView(new HashMap<>(), null);
+        }
         return new ModelAndView(new HashMap<>(), "placeOrder");
     }
 
 
     public Route post = (Request request, Response response) -> {
-        Set<String> params = request.queryParams();
+        User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
+        if (u == null) {
+            response.redirect("/error");
+            return "";
+        }
         if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "items", "priority", "maxPrice","submit")) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
-            System.out.println("Not all");
-            response.redirect("/support");
+            response.redirect("/orders/view");
             return "";
         }
         String items = request.queryParams("items");
@@ -34,9 +45,10 @@ public class PlaceOrderPage implements TemplateViewRoute {
                 .shopList(itemsList)
                 .maxPrice(Integer.parseInt(request.queryParams("maxPrice")))
                 .priority(request.queryParams("password"))
+                .user(u)
                 .build();
         addNewOrderToDatabase(o);
-        response.redirect("/order/view");
+        response.redirect("/orders/view");
         return "";
     };
 }
