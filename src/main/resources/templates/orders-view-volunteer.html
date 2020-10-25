@@ -16,10 +16,13 @@
     }
     .orderClass{
         text-align: center;
-        width: 15%;
+        width: 20%;
         border: solid;
         border-radius: 20px;
         border-color: #336699;
+    }
+    .placeOrder{
+        font-size: 18px;
     }
 </style>
 
@@ -33,11 +36,13 @@
 <div class="orders">
     <h3 id="placeOrder">Available orders:</h3><br><br>
     <div class = "orderClass" th:each="order: ${orders}">
-        <b><p th:text="${order.user.firstname + ' ' + order.user.lastname}"> </p></b>
-        <p th:text="${order.user.postcode}"></p>
+        <b><p th:text="${'Submitted by: ' + order.user.firstname + ' ' + order.user.lastname}"> </p></b>
+        <p th:text="${'Postcode: ' + order.user.postcode}"></p>
+        <div class = "items"> Items:
         <div th:each="item: ${order.shopList}">
             <p th:text="${item}"></p>
-        </div><br>
+        </div>
+        <input style="color: #336699;" type="submit" value="Choose">
     </div><br>
 </div>
 </body>
