@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Volunteers</title>
+    <title>Login</title>
 </head>
 
 <style>
@@ -24,12 +24,15 @@
         border-color: #336699;
     }
 
-    .frontPage button {
-
+    .who {
+        position: absolute;
+        right: 90%;
+        width: 150px;
     }
 </style>
 <body>
 <div class="loginForm">
+    <p class="who"> Who are we and what is our mission ? Find out <a href="/frontPage">here</a></p>
     <h1 style="color: #689bca;"> Login </h1><br>
     <form action="/login" class="frontPage" method="post">
         <input id="email" name="email" placeholder="Email" style="color: #336699;" type="text"><br>

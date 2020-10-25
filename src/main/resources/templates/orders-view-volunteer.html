@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome back !</title>
+</head>
+
+<style>
+    body {
+        font-family: "TVerdana", Geneva, sans-serif;
+        background-color: #c6d9eb;
+    }
+    .setts {
+        position: absolute;
+        left: 90%;
+    }
+    .orderClass{
+        text-align: center;
+        width: 20%;
+        border: solid;
+        border-radius: 20px;
+        border-color: #336699;
+    }
+    .placeOrder{
+        font-size: 18px;
+    }
+</style>
+
+<body>
+<h2>Welcome back to the volunteer page !</h2>
+<div class="setts">
+    <input id="set" onclick="location.href = '/settings'" type="submit" value="Settings">
+    <input id = "logout" onclick = "location.href = '/dev/logout'" type = "submit" value = "Logout">
+</div>
+
+<div class="orders">
+    <h3 id="placeOrder">Available orders:</h3><br><br>
+    <div class = "orderClass" th:each="order: ${orders}">
+        <b><p th:text="${'Submitted by: ' + order.user.firstname + ' ' + order.user.lastname}"> </p></b>
+        <p th:text="${'Postcode: ' + order.user.postcode}"></p>
+        <div class = "items"> Items:
+        <div th:each="item: ${order.shopList}">
+            <p th:text="${item}"></p>
+        </div>
+        <input style="color: #336699;" type="submit" value="Choose">
+    </div><br>
+</div>
+</body>
+</html>

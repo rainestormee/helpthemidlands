@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <title>Register</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+        font-family: "TVerdana", Geneva, sans-serif;
+        background-color: #c6d9eb;
+    }
+
+    div.orderForm {
+        margin-left: 690px;
+        margin-right: 690px;
+        text-align: center;
+        border-style: solid;
+        border-color: #336699;
+        border-radius: 15px;
+    }
+
+    input.frontPage {
+        border-radius: 20px;
+        border-color: #336699;
+    }
+</style>
+
+
+<body>
+    <div class="orderForm">
+        <h1 style="color: #689bca;"> Order </h1><br>
+        <form action="/orders/new" id="orderPage" method="post">
+            <input id="maxPrice" name="maxPrice" placeholder="Maximum Price" style="color: #336699;" type="number"><br>
+
+
+            <label for="priority">Order priority:</label>
+            <select name="priority" id="priority" form="orderPage">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <textarea name="items" placeholder="items" id="items" cols="40" rows="5"></textarea>
+
+            <br><br><br>
+            <input id="submit" name="submit" style="color: #336699;" type="submit" value="Submit">
+
+        </form>
+    </div>
+</body>
+</html>

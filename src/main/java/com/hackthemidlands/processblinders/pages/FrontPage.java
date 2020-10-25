@@ -7,10 +7,10 @@ import spark.TemplateViewRoute;
 
 import java.util.HashMap;
 
-public class SupportPage implements TemplateViewRoute {
+public class FrontPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "support");
+        return new ModelAndView(new HashMap<>(), "index");
     }
 }

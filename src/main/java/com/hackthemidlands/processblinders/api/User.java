@@ -7,6 +7,8 @@ import lombok.Data;
 @Builder
 public class User {
 
+    public static int maxId = -1;
+    private final int id;
     private String firstName;
     private String lastName;
 
@@ -20,27 +22,34 @@ public class User {
         return dummyVolunteer(0);
     }
 
-    public static User dummyUser(){
+    public static User dummyUser() {
         return dummyUser(0);
     }
 
+
     public static User dummyVolunteer(int i) {
+        maxId++;
         return new UserBuilder()
-                .email("dummy" + i + "@test.test")
+                .email("volunteer" + i + "@v.co")
                 .isVolunteer(true)
-                .firstName("Dummy")
+                .firstName("Volunteer")
                 .lastName(i + "")
                 .password("password" + i)
+                .id(maxId)
+                .postcode("PO59 C0D" + i)
                 .build();
     }
 
-    public static User dummyUser(int i){
+    public static User dummyUser(int i) {
+        maxId++;
         return new UserBuilder()
-                .email("user" + i + "@test.test")
+                .email("user" + i + "@u.co")
                 .isVolunteer(false)
                 .firstName("User")
                 .lastName(i + "")
+                .postcode("P057 C0D" + i)
                 .password("pass" + i)
+                .id(maxId)
                 .build();
     }
 }

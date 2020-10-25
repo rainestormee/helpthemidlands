@@ -7,10 +7,10 @@ import spark.TemplateViewRoute;
 
 import java.util.HashMap;
 
-public class UserPage implements TemplateViewRoute {
+public class ErrorPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "userPage");
+        return new ModelAndView(new HashMap<>(), "error");
     }
 }

@@ -104,8 +104,11 @@ public class GoogleGeoCode {
         }
 
         // Check that the result is a valid double
-        Double.parseDouble(ord);
-
-        return ord;
+        try {
+            Double.parseDouble(ord);
+            return ord;
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 }

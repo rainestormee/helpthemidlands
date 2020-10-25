@@ -1,12 +1,14 @@
 package com.hackthemidlands.processblinders.pages;
 
 import com.hackthemidlands.processblinders.api.User;
+import com.hackthemidlands.processblinders.util.UserUtil;
 import spark.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
+import static com.hackthemidlands.processblinders.util.CookieUtil.getCookie;
 import static com.hackthemidlands.processblinders.util.CookieUtil.setCookie;
 import static com.hackthemidlands.processblinders.util.UserUtil.findUserFromDatabase;
 
@@ -25,11 +27,7 @@ public class LoginPage implements TemplateViewRoute {
             return "Invalid login credentials";
         }
         setCookie(response, u);
-        if(u.isVolunteer()){
-            response.redirect("/volunteerPage");
-        }
-        else
-            response.redirect("/userPage");
+        response.redirect("/orders/view");
         return "Successfully logged in as: " + u.getFirstName() + " " + u.getLastName();
     };
 
@@ -37,6 +35,10 @@ public class LoginPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "main");
+        if (UserUtil.findUserFromDatabase(getCookie(request)) != null) {
+            response.redirect("/orders/view");
+            return new ModelAndView(new HashMap<>(), null);
+        }
+        return new ModelAndView(new HashMap<>(), "login");
     }
 }

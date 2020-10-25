@@ -2,6 +2,7 @@ package com.hackthemidlands.processblinders.pages;
 
 import com.hackthemidlands.processblinders.api.User;
 import spark.RouteGroup;
+import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static com.hackthemidlands.processblinders.util.CookieUtil.*;
 import static com.hackthemidlands.processblinders.util.FilterUtil.*;
@@ -14,12 +15,18 @@ public class DevPage {
     public RouteGroup getRoutes = () -> {
         before("/protected", requiresLogin);
         get("/protected", (req, res) -> {
-            User u = getUserFromEmail(getCookie(req));
+            User u = findUserFromDatabase(getCookie(req));
             if (u == null) return "";
             return "Your name is " + u.getFirstName() + " " + u.getLastName();
         });
+        before("/volunteers-only", volunteerOnly);
+        get("/volunteers-only", (re, rs) -> {
+            User u = findUserFromDatabase(getCookie(re));
+            if (u == null || !u.isVolunteer()) return "";
+            return "Hello volunteer!";
+        });
         get("/login", (req, res) -> {
-            User u = User.dummyVolunteer(0);
+            User u = User.dummyUser(0);
             getLoggedInUsers().put(u.getEmail(), u);
             setCookie(res, u);
             return "You have been logged as: " + u.getEmail();
@@ -28,5 +35,6 @@ public class DevPage {
             setCookie(res, User.builder().build());
             return "You have been logged out.";
         });
+        get("/viewOrders", new ViewOrdersPage(), new ThymeleafTemplateEngine());
     };
 }

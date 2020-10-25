@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:with="name=${user.firstName}">Welcome back <span th:value="${name}"></span>!</title>
+</head>
+
+<script type="text/javascript">
+    document.getElementById("set").onclick = function () {
+        location.href = "/settings";
+    };
+
+    document.getElementById("placeOrder").onclick = function () {
+        location.href = "/orders/new";
+    };
+
+    document.getElementById("viewOrders").onclick = function () {
+        location.href = "/orders/view";
+    };
+
+</script>
+
+<style>
+    body {
+        font-family: "TVerdana", Geneva, sans-serif;
+        background-color: #c6d9eb;
+    }
+    .setts {
+        position: absolute;
+        left: 90%;
+    }
+</style>
+
+<body>
+<h2>Welcome back to the user page!</h2>
+<div class="setts">
+    <input id="set" onclick="location.href = '/settings'" type="submit" value="Settings">
+    <input id = "logout" onclick = "location.href = '/dev/logout'" type = "submit" value = "Logout">
+</div>
+<div class="orders">
+    <button id="placeOrder" onclick="location.href = '/orders/new'">Place an order</button>
+    <button id="viewOrders" onclick="location.href = '/orders/view'">View your orders</button>
+</div>
+<div class="orders">
+    <h3 id="placeOrder">Orders</h3><br><br>
+    <div class = "orderClass" th:each="order: ${orders}">
+        <b><p th:text="${order.status.string}"> </p></b>
+        <div th:each="item: ${order.shopList}">
+            <p th:text="${item}"></p>
+        </div><br>
+    </div><br>
+</div>
+</body>
+</html>

@@ -1,7 +1,6 @@
 package com.hackthemidlands.processblinders.api;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 public enum OrderStatus {
@@ -30,7 +29,7 @@ public enum OrderStatus {
         }
     }
 
-    public int getNum(){
+    public int getNum() {
         return this.i;
     }
 }
