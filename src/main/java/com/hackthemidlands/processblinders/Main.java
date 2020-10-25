@@ -56,6 +56,10 @@ public final class Main {
             get("/new", placeOrderPage, templateEngine);
         });
 
+        path("/commitTo", () -> {
+
+        });
+
         path("/settings", () -> {
             SettingsPage settingsPage = new SettingsPage();
             get("", settingsPage, templateEngine);

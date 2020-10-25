@@ -15,8 +15,10 @@
         left: 90%;
     }
     .orderClass{
+        margin-left: 120px;
+        margin-right: 120px;
+        margin-bottom: 10px;
         text-align: center;
-        width: 20%;
         border: solid;
         border-radius: 20px;
         border-color: #336699;
@@ -26,27 +28,39 @@
     .selected{
         border-color: green;
     }
+
+    .waitingOrders{
+        float: left;
+        width: 50%;
+    }
+
+    .commitedOrders{
+        float: right;
+        width: 50%;
+    }
 </style>
 
 <body>
-<h2>Welcome back to the volunteer page !</h2>
 <div class="setts">
     <input id="set" onclick="location.href = '/settings'" type="submit" value="Settings">
     <input id = "logout" onclick = "location.href = '/dev/logout'" type = "submit" value = "Logout">
 </div>
 
-<div class="waitingOrders">
-    <h3>Available orders:</h3><br><br>
-    <div class = "orderClass" th:each="order: ${orders}">
-        <b><p th:text="${'Submitted by: ' + order.user.firstname + ' ' + order.user.lastname}"> </p></b>
-        <p th:text="${'Postcode: ' + order.user.postcode}"></p>
-        <div class = "items"> Items:
-        <div th:each="item: ${order.shopList}">
-            <p th:text="${item}"></p>
-        </div>
-        <input style="color: #336699;" type="submit" value="Choose" onclick="this.parentElement.parentElement.classList.toggle('selected')">
-    </div><br>
-</div>
+<h2>Welcome back to the volunteer page !</h2>
+<div class="actions">
+    <div class="waitingOrders">
+        <h3>Available orders:</h3><br><br>
+        <div class = "orderClass" th:each="order: ${orders}">
+            <b><p th:text="${'Submitted by: ' + order.user.firstname + ' ' + order.user.lastname}"> </p></b>
+            <p th:text="${'Postcode: ' + order.user.postcode}"></p>
+            <div class = "items"> Items:
+            <div th:each="item: ${order.shopList}">
+                <p th:text="${item}"></p>
+            </div>
+            </div>
+            <input style="color: #336699;" type="submit" value="Choose" action = "/commitTo" onclick="this.parentElement.parentElement.classList.toggle('selected')">
+        </div><br>
+    </div>
 
     <div class="commitedOrders">
         <h3>Your orders:</h3><br><br>
@@ -59,5 +73,7 @@
                 </div>
             </div><br>
         </div>
+    </div>
+</div>
 </body>
 </html>
