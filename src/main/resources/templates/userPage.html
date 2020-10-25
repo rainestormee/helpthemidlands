@@ -25,15 +25,18 @@
         font-family: "TVerdana", Geneva, sans-serif;
         background-color: #c6d9eb;
     }
+    .setts {
+        position: absolute;
+        left: 90%;
+    }
 </style>
 
 <body>
 <h1>Welcome back !</h1>
 <h2>Welcome to the user page!</h2>
-<div class="settings">
-    <form action="/settings" method="get">
-        <button id="set" onclick="location.href = '/settings'" type="submit" value="Settings">Settings</button>
-    </form>
+<div class="setts">
+    <input id="set" onclick="location.href = '/settings'" type="submit" value="Settings">
+    <input id = "logout" onclick = "location.href = '/dev/logout'" type = "submit" value = "Logout">
 </div>
 <div class="orders">
     <button id="placeOrder">Place an order</button>

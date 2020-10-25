@@ -54,7 +54,6 @@ public final class Main {
             get("", placeOrderPage, new ThymeleafTemplateEngine());
         });
 
-
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
             get("/view", viewOrdersPage, new ThymeleafTemplateEngine());

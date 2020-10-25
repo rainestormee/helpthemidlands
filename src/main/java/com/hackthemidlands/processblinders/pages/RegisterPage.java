@@ -24,13 +24,14 @@ public class RegisterPage implements TemplateViewRoute {
             return "";
         }
         boolean volunteer = request.queryParams("validate").equalsIgnoreCase("I want to volunteer");
-
+        User.maxId++;
         User u = User.builder()
                 .firstName(request.queryParams("fname"))
                 .lastName(request.queryParams("lname"))
                 .isVolunteer(volunteer)
                 .email(request.queryParams("email"))
                 .password(request.queryParams("password"))
+                .id(User.maxId)
                 .build();
         addNewUserToDatabase(u);
         setCookie(response, u);// logs in the user
