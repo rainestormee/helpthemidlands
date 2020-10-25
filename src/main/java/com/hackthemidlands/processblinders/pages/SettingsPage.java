@@ -7,24 +7,32 @@ import spark.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hackthemidlands.processblinders.util.CookieUtil.*;
-import static com.hackthemidlands.processblinders.util.UserUtil.*;
+import static com.hackthemidlands.processblinders.util.CookieUtil.getCookie;
+import static com.hackthemidlands.processblinders.util.CookieUtil.setCookie;
+import static com.hackthemidlands.processblinders.util.UserUtil.findUserFromDatabase;
+import static com.hackthemidlands.processblinders.util.UserUtil.updateUser;
 
 public class SettingsPage implements TemplateViewRoute {
 
     public Route post = (Request request, Response response) -> {
         // DO CODE FOR UPDATING USER HERE
-        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "postcode", "email")) {
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "postcode", "email", "password")) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
             response.redirect("/settings");
             return "";
         }
+
+        User u = findUserFromDatabase(getCookie(request));
+        if (u == null || !request.queryParams("password").equals(u.getPassword())) {
+            response.redirect("/login");
+            return "";
+        }
+
         String newName = request.queryParams("fname");
         String newSurname = request.queryParams("lname");
         String newEmail = request.queryParams("email");
         String newPostcode = request.queryParams("postcode");
-        User u = findUserFromDatabase(getCookie(request));
-        if(u == null){ response.redirect("/login"); return "";}
+
         User u2 = User.builder().firstName(newName).lastName(newSurname).email(newEmail).postcode(newPostcode).isVolunteer(u.isVolunteer()).id(u.getId()).password(u.getPassword()).build();
         updateUser(u2);
         setCookie(response, u2);

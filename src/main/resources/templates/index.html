@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <title>HelpTheMidlands</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,14 +41,12 @@
 
 <div class="w3-top">
     <div class="w3-bar w3-card w3-animate-top w3-white" id="myNavbar">
-        <a href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> LOGIN</a>
-        <a href="/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> REGISTER</a>
+        <a th:if="${!loggedIn}" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> LOGIN</a>
+        <a th:if="${!loggedIn}" href="/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> REGISTER</a>
+        <a th:if="${loggedIn}" href="/orders/view" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> DASHBOARD</a>
+        <a th:if="${loggedIn}" href="/dev/logout" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
     </div>
 
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="/login" class="w3-bar-item w3-button">LOGIN</a>
-        <a href="/register" class="w3-bar-item w3-button">REGISTER</a>
-    </div>
 </div>
 
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">

@@ -26,13 +26,16 @@
 
     .who {
         position: absolute;
-        right: 90%;
-        width: 150px;
+        float: left;
+    }
+    a {
+        text-decoration: none;
+        color: #336699;
     }
 </style>
 <body>
+<p class="who"> Who are we and what is our mission ? Find out <a href="/">here</a></p>
 <div class="loginForm">
-    <p class="who"> Who are we and what is our mission ? Find out <a href="/frontPage">here</a></p>
     <h1 style="color: #689bca;"> Login </h1><br>
     <form action="/login" class="frontPage" method="post">
         <input id="email" name="email" placeholder="Email" style="color: #336699;" type="text"><br>

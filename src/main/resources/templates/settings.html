@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Settings</title>
 </head>
+
+<style>
+    body {
+        text-align: center;
+        font-family: "TVerdana", Geneva, sans-serif;
+        background-color: #c6d9eb;
+    }
+</style>
 <body>
 
-<p>Edit your account: </p>
+<p><b>Edit your account</b></p>
 <form method="post" action="/settings" th:with="name=${user.firstName}, surname=${user.lastName}, mail=${user.email}, pc = ${user.postcode}">
-    <label>Name: </label><input id="fname" th:attr="value=${name}" type="text" name="fname"><br>
+    <label>Name:    </label><input id="fname" th:attr="value=${name}" type="text" name="fname"><br>
     <label>Surname: </label><input id="lname" th:attr="value=${surname}" type="text" name="lname"><br>
-    <label>Email: </label><input id="email" th:attr="value=${mail}" type="text" name="email"><br>
+    <label>Email:   </label><input id="email" th:attr="value=${mail}" type="text" name="email"><br>
     <label>Postcode: </label><input id="postcode" th:attr="value=${pc}" type="text" name="postcode"><br>
-    <input type="submit" value="Make changes"><br>
+    <label>Password: <input type="password" id="password" type="password" name="password"></label>
+    <br><input type="submit" value="Make changes"><br>
 </form>
 </body>
 </html>
