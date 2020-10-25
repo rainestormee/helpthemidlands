@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title th:with="name=${user.firstName}">Welcome back <span th:value="${name}"></span>!</title>
+    <title>Welcome back !</title>
 </head>
 
 <script type="text/javascript">
@@ -87,8 +87,8 @@
             <div th:each="item: ${order.shopList}">
                 <p th:text="${item}"></p>
             </div>
-            <input class="button" style="color: #336699;" type="submit" value="Cancel order" onclick="cancelOrder(this)">
-        </div><br>
+            <input class="button" style="color: #336699;" type="submit" value="Cancel order" onclick="cancelOrder(this)"><br>
+        <br></div><br>
     </div>
 </body>
 
