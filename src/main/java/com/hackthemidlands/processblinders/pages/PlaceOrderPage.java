@@ -36,7 +36,7 @@ public class PlaceOrderPage implements TemplateViewRoute {
                 .priority(request.queryParams("password"))
                 .build();
         addNewOrderToDatabase(o);
-        response.redirect("/support");
+        response.redirect("/order/view");
         return "";
     };
 }

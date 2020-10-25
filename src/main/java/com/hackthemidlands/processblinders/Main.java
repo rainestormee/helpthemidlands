@@ -47,19 +47,16 @@ public final class Main {
 
         get("/support", new SupportPage(), templateEngine);
         get("/frontPage", new FrontPage(), templateEngine);
-
-        get("/placeOrder", new PlaceOrderPage(), templateEngine);
-
-        path("/placeOrder", () -> {
-            PlaceOrderPage placeOrderPage = new PlaceOrderPage();
-            post("", placeOrderPage.post);
-            get("", placeOrderPage, templateEngine);
-        });
+        
 
 
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
             get("/view", viewOrdersPage, templateEngine);
+
+            PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+            post("/new", placeOrderPage.post);
+            get("/new", placeOrderPage, templateEngine);
         });
 
         path("/settings", () -> {
