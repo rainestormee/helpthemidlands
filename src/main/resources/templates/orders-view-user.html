@@ -78,7 +78,7 @@
         <button id="placeOrder" onclick="location.href = '/orders/new'">Place an order</button>
     </div>
     <div class="orders">
-        <h3 id="placeOrder">Orders</h3><br>
+        <h3>Orders</h3><br>
         <div class="orderClass" th:each="order: ${orders}">
             <b>
                 <h4 th:text="${order.status.string}" class="bold"> </h4>
