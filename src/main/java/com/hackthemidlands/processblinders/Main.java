@@ -16,8 +16,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.hackthemidlands.processblinders.util.OrderUtil.getAllValidOrders;
-import static com.hackthemidlands.processblinders.util.UserUtil.getAllValidUsers;
+import static com.hackthemidlands.processblinders.util.OrderUtil.*;
+import static com.hackthemidlands.processblinders.util.UserUtil.*;
 import static java.util.function.Predicate.not;
 import static spark.Spark.*;
 
@@ -36,7 +36,7 @@ public final class Main {
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyUser).collect(Collectors.toList())); // here i add the dummy users 0, 1, 2
         getAllValidOrders().addAll(IntStream.range(0, 3)
                 .mapToObj(i -> Order.builder().shopList(Arrays.asList(
-                        (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"))
+                        (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"))
                         .id(i).location("P057 C0D3")
                         .user(getAllValidUsers().stream().filter(not(User::isVolunteer)).collect(Collectors.toList()).get(i))
                         .maxPrice(69d).status(OrderStatus.PENDING)

@@ -4,12 +4,9 @@ import com.hackthemidlands.processblinders.api.User;
 import spark.RouteGroup;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
-import static com.hackthemidlands.processblinders.util.CookieUtil.getCookie;
-import static com.hackthemidlands.processblinders.util.CookieUtil.setCookie;
-import static com.hackthemidlands.processblinders.util.FilterUtil.requiresLogin;
-import static com.hackthemidlands.processblinders.util.FilterUtil.volunteerOnly;
-import static com.hackthemidlands.processblinders.util.UserUtil.findUserFromDatabase;
-import static com.hackthemidlands.processblinders.util.UserUtil.getLoggedInUsers;
+import static com.hackthemidlands.processblinders.util.CookieUtil.*;
+import static com.hackthemidlands.processblinders.util.FilterUtil.*;
+import static com.hackthemidlands.processblinders.util.UserUtil.*;
 import static spark.Spark.before;
 import static spark.Spark.get;
 
