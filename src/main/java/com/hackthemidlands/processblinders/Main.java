@@ -18,7 +18,6 @@ import java.util.stream.IntStream;
 
 import static com.hackthemidlands.processblinders.util.OrderUtil.*;
 import static com.hackthemidlands.processblinders.util.UserUtil.*;
-import static java.util.function.Predicate.not;
 import static spark.Spark.*;
 
 public final class Main {
@@ -38,7 +37,7 @@ public final class Main {
                 .mapToObj(i -> Order.builder().shopList(Arrays.asList(
                         (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"))
                         .id(i).location("P057 C0D3")
-                        .user(getAllValidUsers().stream().filter(not(User::isVolunteer)).collect(Collectors.toList()).get(i))
+                        .user(getAllValidUsers().stream().filter(u -> !u.isVolunteer()).collect(Collectors.toList()).get(i))
                         .maxPrice(69d).status(OrderStatus.PENDING)
                         .build()).collect(Collectors.toList()));
 
