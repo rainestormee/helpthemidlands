@@ -18,7 +18,9 @@ public class RegisterPage implements TemplateViewRoute {
 
     public Route post = (Request request, Response response) -> {
         Set<String> params = request.queryParams();
-        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "validate", "email", "password")) {
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "validate", "email", "password1", "password2") ||
+                ((RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "password1", "password2")) &&
+                        !request.queryParams("password1").equals(request.queryParams("password2")))) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
             response.redirect("/register");
             return "";
@@ -30,7 +32,7 @@ public class RegisterPage implements TemplateViewRoute {
                 .lastName(request.queryParams("lname"))
                 .isVolunteer(volunteer)
                 .email(request.queryParams("email"))
-                .password(request.queryParams("password"))
+                .password(request.queryParams("password1"))
                 .id(User.maxId)
                 .build();
         addNewUserToDatabase(u);
