@@ -36,8 +36,8 @@ public final class Main {
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyVolunteer).collect(Collectors.toList())); // here i add the dummy volunteers 0, 1, 2
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyUser).collect(Collectors.toList())); // here i add the dummy users 0, 1, 2
         getAllValidOrders().addAll(IntStream.range(0, 3)
-                .mapToObj(i -> Order.builder().shopList(String.join("\n",
-                        (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"))
+                .mapToObj(i -> Order.builder().shopList((String[]) Arrays.asList(
+                        (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk").toArray())
                         .id(i).location("P057 C0D3")
                         .user(getAllValidUsers().stream().filter(u -> !u.isVolunteer()).collect(Collectors.toList()).get(i))
                         .maxPrice(69d).status(OrderStatus.PENDING)
