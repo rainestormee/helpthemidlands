@@ -16,14 +16,14 @@ public class SettingsPage implements TemplateViewRoute {
 
     public Route post = (Request request, Response response) -> {
         // DO CODE FOR UPDATING USER HERE
-        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "postcode", "email", "password")) {
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "postcode", "email")) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
             response.redirect("/settings");
             return "";
         }
 
         User u = findUserFromDatabase(getCookie(request));
-        if (u == null || !request.queryParams("password").equals(u.getPassword())) {
+        if (u == null) {
             response.redirect("/login");
             return "";
         }
