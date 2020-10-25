@@ -39,6 +39,6 @@ public class LoginPage implements TemplateViewRoute {
             response.redirect("/orders/view");
             return new ModelAndView(new HashMap<>(), null);
         }
-        return new ModelAndView(new HashMap<>(), "main");
+        return new ModelAndView(new HashMap<>(), "login");
     }
 }

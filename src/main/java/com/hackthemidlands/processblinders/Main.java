@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.ModelAndView;
 import spark.Spark;
+import spark.TemplateEngine;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -26,6 +26,7 @@ public final class Main {
 
     public static void main(String[] args) {
         Spark.exception(Exception.class, (exception, request, response) -> exception.printStackTrace()); // allow spark to internally handle exceptions
+        final TemplateEngine templateEngine = new ThymeleafTemplateEngine();
         staticFileLocation("/public");
         port(8080);
 
@@ -34,8 +35,8 @@ public final class Main {
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyVolunteer).collect(Collectors.toList())); // here i add the dummy volunteers 0, 1, 2
         getAllValidUsers().addAll(IntStream.range(0, 3).mapToObj(User::dummyUser).collect(Collectors.toList())); // here i add the dummy users 0, 1, 2
         getAllValidOrders().addAll(IntStream.range(0, 3)
-                .mapToObj(i -> Order.builder().shopList(Arrays.asList(
-                        (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"))
+                .mapToObj(i -> Order.builder().shopList(new String[]{
+                        (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"})
                         .id(i).location("P057 C0D3")
                         .user(getAllValidUsers().stream().filter(u -> !u.isVolunteer()).collect(Collectors.toList()).get(i))
                         .maxPrice(69d).status(OrderStatus.PENDING)
@@ -43,6 +44,7 @@ public final class Main {
 
         get("/error", (re, rs) -> new ModelAndView(new HashMap<>(), "error"), new ThymeleafTemplateEngine());
 
+<<<<<<< HEAD
         get("/support", new SupportPage(), new ThymeleafTemplateEngine());
         get("/frontPage", new FrontPage(), new ThymeleafTemplateEngine());
 
@@ -53,28 +55,35 @@ public final class Main {
             post("", placeOrderPage.post);
             get("", placeOrderPage, new ThymeleafTemplateEngine());
         });
+=======
+        get("/", new FrontPage(), templateEngine);
+>>>>>>> cabed93b6a294ec13e96d4905e56bc8000a96447
 
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
-            get("/view", viewOrdersPage, new ThymeleafTemplateEngine());
+            get("/view", viewOrdersPage, templateEngine);
+
+            PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+            post("/new", placeOrderPage.post);
+            get("/new", placeOrderPage, templateEngine);
         });
 
         path("/settings", () -> {
             SettingsPage settingsPage = new SettingsPage();
-            get("", settingsPage, new ThymeleafTemplateEngine());
+            get("", settingsPage, templateEngine);
             post("", settingsPage.post);
         });
 
         path("/login", () -> {
             LoginPage loginPage = new LoginPage();
-            get("", loginPage, new ThymeleafTemplateEngine());
+            get("", loginPage, templateEngine);
             post("", loginPage.post);
         });
 
         path("/register", () -> {
             RegisterPage registerPage = new RegisterPage();
             post("", registerPage.post);
-            get("", registerPage, new ThymeleafTemplateEngine());
+            get("", registerPage, templateEngine);
         });
 
         path("/dev", new DevPage().getRoutes);

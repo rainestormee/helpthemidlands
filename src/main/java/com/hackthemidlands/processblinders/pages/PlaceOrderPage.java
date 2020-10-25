@@ -1,5 +1,8 @@
 package com.hackthemidlands.processblinders.pages;
 
+import com.hackthemidlands.processblinders.api.User;
+import com.hackthemidlands.processblinders.util.CookieUtil;
+import com.hackthemidlands.processblinders.util.UserUtil;
 import spark.*;
 
 import java.util.HashMap;
@@ -15,24 +18,34 @@ public class PlaceOrderPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "placeOrder");
+        User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
+        if (u == null) {
+            response.redirect("/error");
+            return new ModelAndView(new HashMap<>(), null);
+        }
+        return new ModelAndView(new HashMap<>(), "orders-create");
     }
 
 
     public Route post = (Request request, Response response) -> {
-        Set<String> params = request.queryParams();
-        System.out.print(params);
-        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "items", "priority", "maxPrice")) {
-            // it means we do not have all of the complete form data, so we can send them back to the login page
-            System.out.println("Not all");
-            response.redirect("/support");
+        User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
+        if (u == null) {
+            response.redirect("/error");
             return "";
         }
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "items", "priority", "maxPrice","submit")) {
+            // it means we do not have all of the complete form data, so we can send them back to the login page
+            response.redirect("/orders/view");
+            return "";
+        }
+        String items = request.queryParams("items");
+        String[] itemsList = items.split("[\\r\\n]+");
 
         Order o = Order.builder()
-                .shopList(Arrays.asList(request.queryParams("items")))
+                .shopList(itemsList)
                 .maxPrice(Integer.parseInt(request.queryParams("maxPrice")))
                 .priority(request.queryParams("password"))
+                .user(u)
                 .build();
         addNewOrderToDatabase(o);
         response.redirect("/orders/view");
