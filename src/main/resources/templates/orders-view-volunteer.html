@@ -20,8 +20,6 @@
         border: solid;
         border-radius: 20px;
         border-color: #336699;
-    }
-    .placeOrder{
         font-size: 18px;
     }
 </style>
@@ -33,8 +31,8 @@
     <input id = "logout" onclick = "location.href = '/dev/logout'" type = "submit" value = "Logout">
 </div>
 
-<div class="orders">
-    <h3 id="placeOrder">Available orders:</h3><br><br>
+<div class="waitingOrders">
+    <h3>Available orders:</h3><br><br>
     <div class = "orderClass" th:each="order: ${orders}">
         <b><p th:text="${'Submitted by: ' + order.user.firstname + ' ' + order.user.lastname}"> </p></b>
         <p th:text="${'Postcode: ' + order.user.postcode}"></p>
@@ -45,5 +43,17 @@
         <input style="color: #336699;" type="submit" value="Choose">
     </div><br>
 </div>
+
+    <div class="commitedOrders">
+        <h3>Your orders:</h3><br><br>
+        <div class = "orderClass" th:each="order: ${orders}">
+            <b><p th:text="${'Submitted by: ' + order.user.firstname + ' ' + order.user.lastname}"> </p></b>
+            <p th:text="${'Postcode: ' + order.user.postcode}"></p>
+            <div class = "items"> Items:
+                <div th:each="item: ${order.shopList}">
+                    <p th:text="${item}"></p>
+                </div>
+            </div><br>
+        </div>
 </body>
 </html>

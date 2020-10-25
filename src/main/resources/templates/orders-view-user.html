@@ -29,6 +29,17 @@
         position: absolute;
         left: 90%;
     }
+    .orderClass{
+        text-align: center;
+        width: 20%;
+        border: solid;
+        border-radius: 20px;
+        border-color: #336699;
+        font-size: 18px;
+    }
+    .waitingOrders{
+        font-size: 18px;
+    }
 </style>
 
 <body>
@@ -39,15 +50,15 @@
 </div>
 <div class="orders">
     <button id="placeOrder" onclick="location.href = '/orders/new'">Place an order</button>
-    <button id="viewOrders" onclick="location.href = '/orders/view'">View your orders</button>
 </div>
 <div class="orders">
-    <h3 id="placeOrder">Orders</h3><br><br>
+    <h3 id="placeOrder">Orders</h3><br>
     <div class = "orderClass" th:each="order: ${orders}">
         <b><p th:text="${order.status.string}"> </p></b>
         <div th:each="item: ${order.shopList}">
             <p th:text="${item}"></p>
-        </div><br>
+        </div>
+        <input style="color: #336699;" type="submit" value="Cancel order">
     </div><br>
 </div>
 </body>
