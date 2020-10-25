@@ -41,5 +41,14 @@
     <button id="placeOrder" onclick="location.href = '/orders/new'">Place an order</button>
     <button id="viewOrders" onclick="location.href = '/orders/view'">View your orders</button>
 </div>
+<div class="orders">
+    <h3 id="placeOrder">Orders</h3><br><br>
+    <div class = "orderClass" th:each="order: ${orders}">
+        <b><p th:text="${order.status.string}"> </p></b>
+        <div th:each="item: ${order.shopList}">
+            <p th:text="${item}"></p>
+        </div><br>
+    </div><br>
+</div>
 </body>
 </html>
