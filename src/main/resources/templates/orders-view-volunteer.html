@@ -15,8 +15,8 @@
         left: 90%;
     }
     .orderClass{
-        margin-left: 120px;
-        margin-right: 120px;
+        margin-left: 130px;
+        margin-right: 130px;
         margin-bottom: 10px;
         text-align: center;
         border: solid;
@@ -58,11 +58,11 @@
                 <p th:text="${item}"></p>
             </div>
             </div>
-            <input style="color: #336699;" type="submit" value="Choose" action = "/commitTo" onclick="this.parentElement.parentElement.classList.toggle('selected')">
-        </div><br>
+            <input style="color: #336699;" type="submit" value="Choose" action = "/commitTo" onclick="this.parentElement.parentElement.classList.toggle('selected')"><br>
+        <br></div><br>
     </div>
 
-    <div class="commitedOrders">
+    <div class="commitedOrders"><br>
         <h3>Your orders:</h3><br><br>
         <div class = "orderClass" th:each="order: ${orders}">
             <b><p th:text="${'Submitted by: ' + order.user.firstname + ' ' + order.user.lastname}"> </p></b>
@@ -71,7 +71,7 @@
                 <div th:each="item: ${order.shopList}">
                     <p th:text="${item}"></p>
                 </div>
-            </div><br>
+                <br></div>
         </div>
     </div>
 </div>

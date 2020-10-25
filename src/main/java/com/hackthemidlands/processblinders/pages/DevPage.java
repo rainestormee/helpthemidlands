@@ -33,6 +33,7 @@ public class DevPage {
         });
         get("/logout", (req, res) -> {
             setCookie(res, User.builder().build());
+            res.redirect("/login");
             return "You have been logged out.";
         });
         get("/viewOrders", new ViewOrdersPage(), new ThymeleafTemplateEngine());
