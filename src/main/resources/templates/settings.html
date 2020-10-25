@@ -7,13 +7,12 @@
 <body>
 
 <p>Edit your account: </p>
-<form method = "post" action="/settings" th:with="name=${user.firstName}, surname=${user.lastName}, mail=${user.email}, pc = ${user.postcode}">
-    Name: <input id="fname" th:attr="value=${name}" type="text"><br>
-    Surname: <input id="lname" th:attr="value=${surname}" type="text"><br>
-    Email: <input id="email" th:attr="value=${mail}" type="text"><br>
-    Postcode: <input id="postcode" th:attr="value=${pc}" type="text"><br>
+<form method="post" action="/settings" th:with="name=${user.firstName}, surname=${user.lastName}, mail=${user.email}, pc = ${user.postcode}">
+    <label>Name: </label><input id="fname" th:attr="value=${name}" type="text" name="fname"><br>
+    <label>Surname: </label><input id="lname" th:attr="value=${surname}" type="text" name="lname"><br>
+    <label>Email: </label><input id="email" th:attr="value=${mail}" type="text" name="email"><br>
+    <label>Postcode: </label><input id="postcode" th:attr="value=${pc}" type="text" name="postcode"><br>
     <input type="submit" value="Make changes"><br>
-
 </form>
 </body>
 </html>
