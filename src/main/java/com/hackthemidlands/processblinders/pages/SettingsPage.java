@@ -35,7 +35,10 @@ public class SettingsPage implements TemplateViewRoute {
     public ModelAndView handle(Request request, Response response) {
         Map<String, Object> models = new HashMap<>();
         User u = findUserFromDatabase(getCookie(request));
-        if (u == null) return new ModelAndView(new HashMap<>(), null);
+        if (u == null) {
+            response.redirect("/login");
+            return new ModelAndView(new HashMap<>(), null);
+        }
         models.put("user", u);
 
         return new ModelAndView(models, "settings");
