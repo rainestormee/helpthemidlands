@@ -11,11 +11,11 @@
     };
 
     document.getElementById("placeOrder").onclick = function () {
-        location.href = "/placeOrder";
+        location.href = "/orders/new";
     };
 
-    document.getElementById("viewOrder").onclick = function () {
-        location.href = "/viewOrder";
+    document.getElementById("viewOrders").onclick = function () {
+        location.href = "/orders/view";
     };
 
 </script>
@@ -36,8 +36,8 @@
     </form>
 </div>
 <div class="orders">
-    <button id="placeOrder">Place an order</button>
-    <button id="viewOrders">View your orders</button>
+    <button id="placeOrder" onclick="location.href = '/orders/new'">Place an order</button>
+    <button id="viewOrders" onclick="location.href = '/orders/view'">View your orders</button>
 </div>
 </body>
 </html>
