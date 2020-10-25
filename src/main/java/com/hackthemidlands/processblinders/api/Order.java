@@ -7,6 +7,8 @@ import lombok.Data;
 @Builder
 public class Order {
 
+    public static int maxId = -1;
+
     private String[] shopList;
     private int id;
     private double maxPrice;

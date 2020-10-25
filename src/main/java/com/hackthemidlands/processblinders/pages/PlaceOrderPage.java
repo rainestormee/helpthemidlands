@@ -1,5 +1,6 @@
 package com.hackthemidlands.processblinders.pages;
 
+import com.hackthemidlands.processblinders.api.OrderStatus;
 import com.hackthemidlands.processblinders.api.User;
 import com.hackthemidlands.processblinders.util.CookieUtil;
 import com.hackthemidlands.processblinders.util.UserUtil;
@@ -33,7 +34,7 @@ public class PlaceOrderPage implements TemplateViewRoute {
             response.redirect("/error");
             return "";
         }
-        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "items", "priority", "maxPrice","submit")) {
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "items", "priority", "maxPrice")) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
             response.redirect("/orders/view");
             return "";
@@ -44,8 +45,10 @@ public class PlaceOrderPage implements TemplateViewRoute {
         Order o = Order.builder()
                 .shopList(itemsList)
                 .maxPrice(Integer.parseInt(request.queryParams("maxPrice")))
-                .priority(request.queryParams("password"))
+                .priority(request.queryParams("priority"))
                 .user(u)
+                .id(++Order.maxId)
+                .status(OrderStatus.PENDING)
                 .build();
         addNewOrderToDatabase(o);
         response.redirect("/orders/view");

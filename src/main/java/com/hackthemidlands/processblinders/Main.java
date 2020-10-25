@@ -37,10 +37,11 @@ public final class Main {
         getAllValidOrders().addAll(IntStream.range(0, 3)
                 .mapToObj(i -> Order.builder().shopList(new String[]{
                         (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"})
-                        .id(i)
+                        .id(++Order.maxId)
                         .user(getAllValidUsers().stream().filter(u -> !u.isVolunteer()).collect(Collectors.toList()).get(i))
                         .maxPrice(69d).status(OrderStatus.PENDING)
-                        .build()).collect(Collectors.toList()));
+                        .build())
+                .collect(Collectors.toList()));
 
         get("/error", (re, rs) -> new ModelAndView(new HashMap<>(), "error"), new ThymeleafTemplateEngine());
 
