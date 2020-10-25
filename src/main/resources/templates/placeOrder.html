@@ -57,19 +57,19 @@
 <body>
     <div class="orderForm">
         <h1 style="color: #689bca;"> Register </h1><br>
-        <form action="/placeOrder" class="orderPage" method="post">
+        <form action="/placeOrder" id="orderPage" method="post">
             <input id="maxPrice" name="maxPrice" placeholder="Maximum Price" style="color: #336699;" type="number"><br>
 
 
             <label for="priority">Order priority:</label>
-            <select name="priority" id="priority" form="orderForm">
+            <select name="priority" id="priority" form="orderPage">
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
             </select>
 
 
-            <fieldset id="items">
+            <fieldset id="items" form="orderPage">
                 <legend>Items</legend>
             </fieldset>
             <br><br><br>
