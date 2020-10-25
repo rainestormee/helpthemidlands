@@ -1,30 +1,55 @@
 package com.hackthemidlands.processblinders.api;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class User {
 
+    public static int maxId = -1;
+    private final int id;
     private String firstName;
     private String lastName;
 
-    private boolean isVolunteer;
-
     private String email;
     private String password;
+    private String postcode;
 
-    public User() {
-        this.firstName = "Default";
-        this.lastName = "Lastname";
+    private boolean isVolunteer;
 
-        this.email = "test@test.test";
-        this.password = "password123";
+    public static User dummyVolunteer() {
+        return dummyVolunteer(0);
     }
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
+    public static User dummyUser() {
+        return dummyUser(0);
+    }
+
+
+    public static User dummyVolunteer(int i) {
+        maxId++;
+        return new UserBuilder()
+                .email("volunteer" + i + "@v.co")
+                .isVolunteer(true)
+                .firstName("Volunteer")
+                .lastName(i + "")
+                .password("password" + i)
+                .id(maxId)
+                .postcode("PO59 C0D" + i)
+                .build();
+    }
+
+    public static User dummyUser(int i) {
+        maxId++;
+        return new UserBuilder()
+                .email("user" + i + "@u.co")
+                .isVolunteer(false)
+                .firstName("User")
+                .lastName(i + "")
+                .postcode("P057 C0D" + i)
+                .password("pass" + i)
+                .id(maxId)
+                .build();
     }
 }

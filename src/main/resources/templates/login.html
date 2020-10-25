@@ -1,28 +1,7 @@
-<!--DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        h1 {
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>Login</h1>
-    <button>I need support</button> <button onclick="window.location.href = '/login/volunteer'">I want to volunteer</button>
-</body>
-
-</html>
--->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Volunteers</title>
+    <title>Login</title>
 </head>
 
 <style>
@@ -45,20 +24,26 @@
         border-color: #336699;
     }
 
-    .frontPage button {
-
+    .who {
+        position: absolute;
+        float: left;
+    }
+    a {
+        text-decoration: none;
+        color: #336699;
     }
 </style>
 <body>
+<p class="who"> Who are we and what is our mission ? Find out <a href="/">here</a></p>
 <div class="loginForm">
     <h1 style="color: #689bca;"> Login </h1><br>
-    <form action="/login.java" class="frontPage">
+    <form action="/login" class="frontPage" method="post">
         <input id="email" name="email" placeholder="Email" style="color: #336699;" type="text"><br>
-        <input id="password" placeholder="Password" style="color: #336699;" type="password"><br>
+        <input id="password" name="password" placeholder="Password" style="color: #336699;" type="password"><br>
         <input style="color: #336699;" type="submit" value="Submit">
     </form>
     <br><br><br><br><br>
-    <p>Don't have an account yet? <a href="/login/makeAccount" style="color: #336699; ">Register here</a></p>
+    <p>Don't have an account yet? <a href="/register" style="color: #336699; ">Register here</a></p>
 </div>
 </body>
 </html>

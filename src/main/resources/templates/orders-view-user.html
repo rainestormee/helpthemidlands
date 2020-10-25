@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome back !</title>
+</head>
+
+<script type="text/javascript">
+    document.getElementById("set").onclick = function () {
+        location.href = "/settings";
+    };
+
+    document.getElementById("placeOrder").onclick = function () {
+        location.href = "/orders/new";
+    };
+
+    document.getElementById("viewOrders").onclick = function () {
+        location.href = "/orders/view";
+    };
+
+    function cancelOrder(obj) {
+        var parentObj = obj.parentElement;
+        parentObj.classList.toggle("cancelled");
+
+        if (parentObj.classList.contains("cancelled")) {
+            parentObj.querySelector(".bold").innerHTML = "Cancelled";
+            parentObj.querySelector(".button").innerHTML = "Restore order";
+        }
+        else {
+            parentObj.querySelector(".bold").innerHTML = "Pending";
+            parentObj.querySelector(".button").innerHTML = "Cancel order";
+
+        }
+    };
+
+</script>
+
+<style>
+    body {
+        font-family: "TVerdana", Geneva, sans-serif;
+        background-color: #c6d9eb;
+    }
+
+    .setts {
+        position: absolute;
+        left: 90%;
+    }
+
+    .orderClass {
+        text-align: center;
+        width: 20%;
+        border-radius: 20px;
+        border: solid #336699;
+        font-size: 18px;
+    }
+
+    .waitingOrders {
+        font-size: 18px;
+    }
+
+    .cancelled>div>p {
+        text-decoration: line-through;
+    }
+
+    .cancelled {
+        border-color: red;
+    }
+</style>
+
+<body>
+    <h2>Welcome back to the user page!</h2>
+    <div class="setts">
+        <input id="set" onclick="location.href = '/settings'" type="submit" value="Settings">
+        <input id="logout" onclick="location.href = '/dev/logout'" type="submit" value="Logout">
+    </div>
+    <div class="orders">
+        <button id="placeOrder" onclick="location.href = '/orders/new'">Place an order</button>
+    </div>
+    <div class="orders">
+        <h3>Orders</h3><br>
+        <div class="orderClass" th:each="order: ${orders}">
+            <b>
+                <h4 th:text="${order.status.string}" class="bold"> </h4>
+            </b>
+            <div th:each="item: ${order.shopList}">
+                <p th:text="${item}"></p>
+            </div>
+            <input class="button" style="color: #336699;" type="submit" value="Cancel order" onclick="cancelOrder(this)"><br>
+        <br></div><br>
+    </div>
+</body>
+
+</html>
