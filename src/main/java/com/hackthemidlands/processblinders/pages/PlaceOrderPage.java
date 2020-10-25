@@ -21,21 +21,22 @@ public class PlaceOrderPage implements TemplateViewRoute {
 
     public Route post = (Request request, Response response) -> {
         Set<String> params = request.queryParams();
-        System.out.print(params);
-        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "<items>", "priority", "maxPrice")) {
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "items", "priority", "maxPrice","submit")) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
             System.out.println("Not all");
             response.redirect("/support");
             return "";
         }
+        String items = request.queryParams("items");
+        String[] itemsList = items.split("[\\r\\n]+");
 
         Order o = Order.builder()
-                .shopList(request.queryParams("items"))
+                .shopList(itemsList)
                 .maxPrice(Integer.parseInt(request.queryParams("maxPrice")))
                 .priority(request.queryParams("password"))
                 .build();
         addNewOrderToDatabase(o);
-        response.redirect("/orders/view");
+        response.redirect("/support");
         return "";
     };
 }
