@@ -5,14 +5,15 @@ import com.hackthemidlands.processblinders.api.OrderStatus;
 import com.hackthemidlands.processblinders.api.User;
 import lombok.Getter;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderUtil {
 
     @Getter
     private static final List<Order> allValidOrders = new ArrayList<>();
-
 
     public static boolean addNewOrderToDatabase(Order order) {
         if (findOrderFromDatabase(order.getID()) != null) {
@@ -24,6 +25,14 @@ public class OrderUtil {
 
     public static Order findOrderFromDatabase(int id) {
         return allValidOrders.stream().filter(o -> o.getID() == id).findFirst().orElse(null);
+    }
+
+    public static List<Order> getAllPendingOrders() {
+        return getAllOrdersWithStatus(OrderStatus.PENDING);
+    }
+
+    public static List<Order> getAllOrdersWithStatus(OrderStatus status) {
+        return allValidOrders.stream().filter(o -> status.equals(o.getStatus())).collect(Collectors.toList());
     }
 
     public static boolean isPending(Order order) {

@@ -20,7 +20,7 @@ public class User {
         return dummyVolunteer(0);
     }
 
-    public static User dummyUser(){
+    public static User dummyUser() {
         return dummyUser(0);
     }
 
@@ -34,7 +34,7 @@ public class User {
                 .build();
     }
 
-    public static User dummyUser(int i){
+    public static User dummyUser(int i) {
         return new UserBuilder()
                 .email("user" + i + "@u.co")
                 .isVolunteer(false)

@@ -18,7 +18,7 @@ public class Order {
     private User volunteer;
     private String priority;
 
-    public int getID(){
+    public int getID() {
         return this.id;
     }
     //time window?

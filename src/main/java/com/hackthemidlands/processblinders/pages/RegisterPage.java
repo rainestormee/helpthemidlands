@@ -5,7 +5,6 @@ import com.hackthemidlands.processblinders.util.RequestUtil;
 import com.hackthemidlands.processblinders.util.UserUtil;
 import spark.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 

@@ -29,7 +29,7 @@ public enum OrderStatus {
         }
     }
 
-    public int getNum(){
+    public int getNum() {
         return this.i;
     }
 }
