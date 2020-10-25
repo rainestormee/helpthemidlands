@@ -10,31 +10,35 @@
         font-family: "TVerdana", Geneva, sans-serif;
         background-color: #c6d9eb;
     }
-
     .setts {
         position: absolute;
         left: 90%;
     }
+    .orderClass{
+        text-align: center;
+        width: 15%;
+        border: solid;
+        border-radius: 20px;
+        border-color: #336699;
+    }
 </style>
 
 <body>
-<h1>Welcome back !</h1>
-
-<h2>Welcome to the volunteer page.</h2>
+<h2>Welcome back to the volunteer page !</h2>
 <div class="setts">
     <input id="set" onclick="location.href = '/settings'" type="submit" value="Settings">
     <input id = "logout" onclick = "location.href = '/dev/logout'" type = "submit" value = "Logout">
 </div>
 
 <div class="orders">
-    <button id="placeOrder">Available orders:</button>
-    <tr th:each="order: ${orders}">
-        <p th:text="${order.user.firstname + ' ' + order.user.lastname}"> </p>
+    <h3 id="placeOrder">Available orders:</h3><br><br>
+    <div class = "orderClass" th:each="order: ${orders}">
+        <b><p th:text="${order.user.firstname + ' ' + order.user.lastname}"> </p></b>
         <p th:text="${order.user.postcode}"></p>
-        <td th:each="item: ${order.shopList}">
+        <div th:each="item: ${order.shopList}">
             <p th:text="${item}"></p>
-        </td>
-    </tr>
+        </div><br>
+    </div><br>
 </div>
 </body>
 </html>
