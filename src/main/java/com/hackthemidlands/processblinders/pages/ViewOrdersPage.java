@@ -34,6 +34,7 @@ public class ViewOrdersPage implements TemplateViewRoute {
     }
 
     public ModelAndView userPage(Request request, Response response, Map<String, Object> models) {
+        models.put("orders", OrderUtil.getAllOrdersForUser((User)models.get("user")));
         return new ModelAndView(models, "orders-view-user");
     }
 }

@@ -39,6 +39,19 @@ public class OrderUtil {
         return order.getStatus().getNum() == 0;
     }
 
+    public static boolean clearVolunteer(int orderId, User u) {
+        if (u == null) return false;
+        Order o = findOrderFromDatabase(orderId);
+        if (o == null || o.getVolunteer() != u) return false;
+        o.setStatus(OrderStatus.PENDING);
+        o.setVolunteer(null);
+        return true;
+    }
+
+    public static List<Order> getAllOrdersForUser(User u) {
+        return allValidOrders.stream().filter(o -> o.getUser().equals(u)).collect(Collectors.toList());
+    }
+
     public static boolean setVolunteer(Order order, User u) {
         if (order == null) return false;
         if (u == null) {
