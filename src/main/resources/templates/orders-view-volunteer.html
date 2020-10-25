@@ -27,6 +27,13 @@
 
 <div class="orders">
     <button id="placeOrder">Available orders:</button>
+    <tr th:each="order: ${orders}">
+        <p th:text="${order.user.firstname + ' ' + order.user.lastname}"> </p>
+        <p th:text="${order.user.postcode}"></p>
+        <td th:each="item: ${order.shopList}">
+            <p th:text="${item}"></p>
+        </td>
+    </tr>
 </div>
 </body>
 </html>

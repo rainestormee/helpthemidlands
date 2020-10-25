@@ -11,6 +11,6 @@ public class FrontPage implements TemplateViewRoute {
 
     @Override
     public ModelAndView handle(Request request, Response response) {
-        return new ModelAndView(new HashMap<>(), "frontPage");
+        return new ModelAndView(new HashMap<>(), "index");
     }
 }

@@ -23,7 +23,7 @@ public class PlaceOrderPage implements TemplateViewRoute {
             response.redirect("/error");
             return new ModelAndView(new HashMap<>(), null);
         }
-        return new ModelAndView(new HashMap<>(), "placeOrder");
+        return new ModelAndView(new HashMap<>(), "orders-create");
     }
 
 

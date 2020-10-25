@@ -30,10 +30,10 @@ public class ViewOrdersPage implements TemplateViewRoute {
 
     public ModelAndView volunteerPage(Request request, Response response, Map<String, Object> models) {
         models.put("orders", OrderUtil.getAllPendingOrders());
-        return new ModelAndView(models, "volunteerPage");
+        return new ModelAndView(models, "orders-view-volunteer");
     }
 
     public ModelAndView userPage(Request request, Response response, Map<String, Object> models) {
-        return new ModelAndView(models, "userPage");
+        return new ModelAndView(models, "orders-view-user");
     }
 }

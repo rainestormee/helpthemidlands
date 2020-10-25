@@ -31,6 +31,7 @@ public class User {
                 .firstName("Volunteer")
                 .lastName(i + "")
                 .password("password" + i)
+                .postcode("PO59 C0D" + i)
                 .build();
     }
 
@@ -40,6 +41,7 @@ public class User {
                 .isVolunteer(false)
                 .firstName("User")
                 .lastName(i + "")
+                .postcode("P057 C0D" + i)
                 .password("pass" + i)
                 .build();
     }

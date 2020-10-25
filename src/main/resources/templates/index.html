@@ -17,16 +17,11 @@
         line-height: 1.8;
     }
 
-    /* Create a Parallax Effect */
     .bgimg-1 {
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-    }
-
-    /* First image (Logo. Full height) */
-    .bgimg-1 {
         background-image: url('https://i.guim.co.uk/img/media/c1da7694576685e61e70acfce9735c674dce363d/3_0_10661_6400/master/10661.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=b1ca9185b057e048f1d775529ab75529');
         min-height: 100%;
     }
@@ -35,7 +30,6 @@
         letter-spacing: 10px;
     }
 
-    /* Turn off parallax scrolling for tablets and phones */
     @media only screen and (max-device-width: 1600px) {
         .bgimg-1 {
             background-attachment: scroll;
@@ -45,36 +39,24 @@
 </style>
 <body>
 
-<!-- Navbar (sit on top) -->
 <div class="w3-top">
-    <div class="w3-bar" id="myNavbar">
-        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
-           onclick="toggleFunction()" title="Toggle Navigation Menu">
-            <i class="fa fa-bars"></i>
-        </a>
+    <div class="w3-bar w3-card w3-animate-top w3-white" id="myNavbar">
         <a href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> LOGIN</a>
         <a href="/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> REGISTER</a>
-        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
-            <i class="fa fa-search"></i>
-        </a>
     </div>
 
-    <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="#home" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
-        <a href="/login" class="w3-bar-item w3-button" onclick="toggleFunction()">LOGIN</a>
-        <a href="/register" class="w3-bar-item w3-button" onclick="toggleFunction()">REGISTER</a>
+        <a href="/login" class="w3-bar-item w3-button">LOGIN</a>
+        <a href="/register" class="w3-bar-item w3-button">REGISTER</a>
     </div>
 </div>
 
-<!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
     <div class="w3-display-middle" style="white-space:nowrap;">
         <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">HELP THE MIDLANDS</span>
     </div>
 </div>
 
-<!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
     <h3 class="w3-center">ABOUT THIS PLATFORM</h3>
     <p class="w3-center"><em>We're all in this together</em></p>
@@ -91,44 +73,14 @@
                 email address and a password.</b></p><br>
         </div>
 
-        <!-- Hide this text on small devices -->
         <div class="w3-col m6 w3-hide-small w3-padding-large">
             <p>Volunteers are extremely important in the fight against the pandemic. Be part of the team !</p>
         </div>
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
-    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+<footer class="w3-center w3-black w3-padding-64">
     <p>Powered by the ProcessBlinders</p>
 </footer>
-
-<script>
-
-    // Change style of navbar on scroll
-    window.onscroll = function () {
-        myFunction()
-    };
-
-    function myFunction() {
-        let navbar = document.getElementById("myNavbar");
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
-        } else {
-            navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
-        }
-    }
-
-    // Used to toggle the menu on small screens when clicking on the menu button
-    function toggleFunction() {
-        const x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") === -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
-</script>
 </body>
 </html>
