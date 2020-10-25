@@ -4,10 +4,8 @@ import com.hackthemidlands.processblinders.api.User;
 import com.hackthemidlands.processblinders.util.RequestUtil;
 import spark.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import static com.hackthemidlands.processblinders.util.CookieUtil.*;
 import static com.hackthemidlands.processblinders.util.UserUtil.*;
@@ -36,13 +34,8 @@ public class SettingsPage implements TemplateViewRoute {
     @Override
     public ModelAndView handle(Request request, Response response) {
         Map<String, Object> models = new HashMap<>();
-<<<<<<< HEAD
         User u = findUserFromDatabase(getCookie(request));
-        if (u == null) return null;
-=======
-        User u = UserUtil.findUserFromDatabase(CookieUtil.getCookie(request));
         if (u == null) return new ModelAndView(new HashMap<>(), null);
->>>>>>> cabed93b6a294ec13e96d4905e56bc8000a96447
         models.put("user", u);
 
         return new ModelAndView(models, "settings");

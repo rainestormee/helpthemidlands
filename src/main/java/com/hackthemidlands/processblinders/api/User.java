@@ -35,11 +35,8 @@ public class User {
                 .firstName("Volunteer")
                 .lastName(i + "")
                 .password("password" + i)
-<<<<<<< HEAD
                 .id(maxId)
-=======
                 .postcode("PO59 C0D" + i)
->>>>>>> cabed93b6a294ec13e96d4905e56bc8000a96447
                 .build();
     }
 

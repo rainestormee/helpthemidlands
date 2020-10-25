@@ -37,27 +37,14 @@ public final class Main {
         getAllValidOrders().addAll(IntStream.range(0, 3)
                 .mapToObj(i -> Order.builder().shopList(new String[]{
                         (random.nextInt(10) + i) + " tins of beans", (random.nextInt(i + 1) + 1) + " loaves of bread", (random.nextInt(i + 4) + i) + " pints of milk"})
-                        .id(i).location("P057 C0D3")
+                        .id(i)
                         .user(getAllValidUsers().stream().filter(u -> !u.isVolunteer()).collect(Collectors.toList()).get(i))
                         .maxPrice(69d).status(OrderStatus.PENDING)
                         .build()).collect(Collectors.toList()));
 
         get("/error", (re, rs) -> new ModelAndView(new HashMap<>(), "error"), new ThymeleafTemplateEngine());
 
-<<<<<<< HEAD
-        get("/support", new SupportPage(), new ThymeleafTemplateEngine());
-        get("/frontPage", new FrontPage(), new ThymeleafTemplateEngine());
-
-        get("/placeOrder", new PlaceOrderPage(), new ThymeleafTemplateEngine());
-
-        path("/placeOrder", () -> {
-            PlaceOrderPage placeOrderPage = new PlaceOrderPage();
-            post("", placeOrderPage.post);
-            get("", placeOrderPage, new ThymeleafTemplateEngine());
-        });
-=======
         get("/", new FrontPage(), templateEngine);
->>>>>>> cabed93b6a294ec13e96d4905e56bc8000a96447
 
         path("/orders", () -> {
             ViewOrdersPage viewOrdersPage = new ViewOrdersPage();
