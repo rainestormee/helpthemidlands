@@ -15,25 +15,22 @@ import static com.hackthemidlands.processblinders.util.UserUtil.addNewUserToData
 public class RegisterPage implements TemplateViewRoute {
 
     // HTTP POST
-
     public Route post = (Request request, Response response) -> {
         Set<String> params = request.queryParams();
-        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "validate", "email", "password1", "password2") ||
-                ((RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "password1", "password2")) &&
-                        !request.queryParams("password1").equals(request.queryParams("password2")))) {
+        if (!RequestUtil.checkIfAllQueryParamsArePresentAndNotNull(request, "fname", "lname", "validate", "email", "password", "postcode")) {
             // it means we do not have all of the complete form data, so we can send them back to the login page
             response.redirect("/register");
             return "";
         }
         boolean volunteer = request.queryParams("validate").equalsIgnoreCase("I want to volunteer");
-        User.maxId++;
         User u = User.builder()
                 .firstName(request.queryParams("fname"))
                 .lastName(request.queryParams("lname"))
                 .isVolunteer(volunteer)
+                .postcode("postcode")
                 .email(request.queryParams("email"))
-                .password(request.queryParams("password1"))
-                .id(User.maxId)
+                .password(request.queryParams("password"))
+                .id(++User.maxId)
                 .build();
         addNewUserToDatabase(u);
         setCookie(response, u);// logs in the user
