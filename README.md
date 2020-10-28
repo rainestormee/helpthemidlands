@@ -5,6 +5,7 @@ Submission for HackTheMidlands 5.0
 - Making IT Good For Society
 - Supporting The Fight Against COVID-19
 - Helping Your Local Community
+- Supporting Personal Mental Health
 
 ## Concept
 

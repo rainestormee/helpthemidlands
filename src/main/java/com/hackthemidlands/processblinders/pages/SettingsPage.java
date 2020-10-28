@@ -36,7 +36,7 @@ public class SettingsPage implements TemplateViewRoute {
         User u2 = User.builder().firstName(newName).lastName(newSurname).email(newEmail).postcode(newPostcode).isVolunteer(u.isVolunteer()).id(u.getId()).password(u.getPassword()).build();
         updateUser(u2);
         setCookie(response, u2);
-        response.redirect("/dev/protected");
+        response.redirect("/orders/view");
         return "";
     };
 
